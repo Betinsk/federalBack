@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 @Entity
 public class Imate implements Serializable{
@@ -17,6 +18,7 @@ public class Imate implements Serializable{
 	private Integer age;
 	private String gender;
 	private String name;
+
 	
 	public Imate() {
 		
@@ -61,6 +63,7 @@ public class Imate implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 
 	@Override
 	public int hashCode() {
