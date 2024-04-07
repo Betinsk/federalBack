@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,7 @@ public class ImateResource {
 	ImateRepository imateRepository;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public List<Imate> Listar() {
+		public List<Imate> Listar() {
 		
 		Imate imt = new Imate(1, 56, "Male", "Whiter White");
 		Imate imt2 = new Imate(2, 23, "Male", "Jessy Pinkman");
@@ -46,4 +48,14 @@ public class ImateResource {
 	        }
 	    }
 	
+		
+		  @DeleteMapping("/{id}")
+		    public ResponseEntity<Void> deleteImate(@PathVariable Integer id) {
+			  imateRepository.deleteById(id);
+		        return ResponseEntity.noContent().build();
+		   
+		  }
+		  
+
 }
+

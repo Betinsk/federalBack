@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.domain.Imate;
 
 @Repository
-
 public interface ImateRepository extends JpaRepository<Imate, Integer> {
 
 }
