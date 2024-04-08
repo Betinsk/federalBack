@@ -7,31 +7,36 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.Table;
+
 
 @Entity
 
 public class Imate implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Integer age;
 	private String gender;
 	private String name;
+	private Integer socialSecurity;
 
 	
 	public Imate() {
 		
 	}
 
-	public Imate(Integer id, Integer age, String gender, String name) {
+	public Imate(Integer id, Integer age, String gender, String name, Integer socialSecurity) {
 		super();
 		this.id = id;
 		this.age = age;
 		this.gender = gender;
 		this.name = name;
+		this.socialSecurity = socialSecurity;
 	}
 
 	public Integer getId() {
@@ -66,6 +71,14 @@ public class Imate implements Serializable{
 		this.name = name;
 	}
 	
+	
+	public Integer getSocialSecurity() {
+		return socialSecurity;
+	}
+
+	public void setSocialSecurity(Integer socialSecurity) {
+		this.socialSecurity = socialSecurity;
+	}
 
 	@Override
 	public int hashCode() {
