@@ -10,7 +10,6 @@ import jakarta.persistence.Id;
 
 
 @Entity
-
 public class Imate implements Serializable{
 	
 	/**

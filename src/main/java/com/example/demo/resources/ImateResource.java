@@ -30,7 +30,6 @@ public class ImateResource {
 		
 		Imate imt = new Imate(1, 56, "Male", "Whiter White", 45498189);
 		Imate imt2 = new Imate(2, 23, "Male", "Jessy Pinkman", 4894894);
-		List<Imate> list = new ArrayList<>();
 		
 		imateRepository.save(imt);
 		imateRepository.save(imt2);
