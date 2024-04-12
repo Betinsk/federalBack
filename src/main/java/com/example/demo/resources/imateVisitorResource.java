@@ -26,10 +26,10 @@ public class imateVisitorResource {
 	@Autowired
 	ImateVisitorService imateVisitorService;
 	
-	@RequestMapping(method=RequestMethod.GET)
+@RequestMapping(method=RequestMethod.GET)
 	public List<ImateVisitors> Listar() {
 		
-		Imate im = new Imate(1, 54, "Male", "Jack Lane", 488944);
+	Imate im = new Imate(1, 54, "Male", "Jack Lane", 488944);
 		
 		ImateVisitors imV= new ImateVisitors(1, "Jhon Card", im);
 		imateVisitorRepository.save(imV);
@@ -37,10 +37,12 @@ public class imateVisitorResource {
 		return imateVisitorRepository.findAll();
 	}
 	
-	@PostMapping("/create")
+	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<String> createVisitor(@RequestBody ImateVisitors request) {
         try {
-        	imateVisitorService.createVisitor(request);
+   		 // Adicione logs para depurar o objeto recebido
+            System.out.println("Objeto recebido: " + request.toString());
+        	imateVisitorRepository.save(request);
             return ResponseEntity.ok("Parente criado com sucesso!");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

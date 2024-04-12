@@ -19,7 +19,7 @@ public class ImateVisitorService {
 	        // Crie uma nova instância de Parente
 	        ImateVisitors visitor = new ImateVisitors();
 	        visitor.setName(nameVisitor);
-	        visitor.setImate(imate);
+	      //  visitor.setImate(imate);
 
 	        // Persista o Parente no banco de dados
 	        entityManager.persist(nameVisitor);

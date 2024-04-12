@@ -17,25 +17,27 @@ public class ImateVisitors implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String name;
-	
+		@Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Integer id;
+		private String name;
+		
 		@ManyToOne
 	    @JoinColumn(name = "imate_id", referencedColumnName = "id")
 	    private Imate imate;
 
-		public ImateVisitors(Integer id, String name, Imate imate) {
-			super();
-			this.id = id;
-			this.name = name;
-			this.imate = imate;
-		}
-		
 		public ImateVisitors() {
 			
 		}
+		
+		public ImateVisitors(Integer id, String name, Imate imate) {
+			this.id = id;
+			this.name = name;
+			this.imate = imate;
+
+		}
+		
+		
 
 		public Integer getId() {
 			return id;
