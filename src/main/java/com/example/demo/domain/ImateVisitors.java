@@ -22,6 +22,7 @@ public class ImateVisitors implements Serializable {
 		private Integer id;
 		private String name;
 		
+		
 		@ManyToOne
 	    @JoinColumn(name = "imate_id", referencedColumnName = "id")
 	    private Imate imate;
@@ -29,15 +30,12 @@ public class ImateVisitors implements Serializable {
 		public ImateVisitors() {
 			
 		}
-		
 		public ImateVisitors(Integer id, String name, Imate imate) {
 			this.id = id;
 			this.name = name;
 			this.imate = imate;
 
 		}
-		
-		
 
 		public Integer getId() {
 			return id;
