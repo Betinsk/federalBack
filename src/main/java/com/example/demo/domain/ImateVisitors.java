@@ -21,6 +21,9 @@ public class ImateVisitors implements Serializable {
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Integer id;
 		private String name;
+		private Integer age;
+		private Integer socialSecure;
+		private String cellfoneNumber;
 		
 		
 		@ManyToOne
@@ -30,9 +33,12 @@ public class ImateVisitors implements Serializable {
 		public ImateVisitors() {
 			
 		}
-		public ImateVisitors(Integer id, String name, Imate imate) {
+		public ImateVisitors(Integer id, String name, Integer socialSecure, Integer age, String cellfoneNumber, Imate imate) {
 			this.id = id;
 			this.name = name;
+			this.socialSecure = socialSecure;
+			this.age = age;
+			this.cellfoneNumber = cellfoneNumber;
 			this.imate = imate;
 
 		}
@@ -60,6 +66,25 @@ public class ImateVisitors implements Serializable {
 		public void setImate(Imate imate) {
 			this.imate = imate;
 		}
+		
+		public Integer getAge() {
+			return age;
+		}
+		public void setAge(Integer age) {
+			this.age = age;
+		}
+		public String getCellfoneNumber() {
+			return cellfoneNumber;
+		}
+		public void setCellfoneNumber(String cellfoneNumber) {
+			this.cellfoneNumber = cellfoneNumber;
+		}
+		public Integer getSocialSecure() {
+			return socialSecure;
+		}
+		public void setSocialSecure(Integer socialSecure) {
+			this.socialSecure = socialSecure;
+		}
 
 		@Override
 		public int hashCode() {
@@ -77,6 +102,7 @@ public class ImateVisitors implements Serializable {
 			ImateVisitors other = (ImateVisitors) obj;
 			return Objects.equals(id, other.id);
 		}
+	
 		
 		
 }
