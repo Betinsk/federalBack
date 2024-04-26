@@ -21,7 +21,7 @@ public class ImateVisitors implements Serializable {
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Integer id;
 		private String name;
-		private Integer age;
+		private String age;
 		private Integer socialSecure;
 		private String cellfoneNumber;
 		
@@ -33,11 +33,11 @@ public class ImateVisitors implements Serializable {
 		public ImateVisitors() {
 			
 		}
-		public ImateVisitors(Integer id, String name, Integer socialSecure, Integer age, String cellfoneNumber, Imate imate) {
+		public ImateVisitors(Integer id, String name, String age, Integer socialSecure,  String cellfoneNumber, Imate imate) {
 			this.id = id;
 			this.name = name;
-			this.socialSecure = socialSecure;
 			this.age = age;
+			this.socialSecure = socialSecure;
 			this.cellfoneNumber = cellfoneNumber;
 			this.imate = imate;
 
@@ -67,10 +67,10 @@ public class ImateVisitors implements Serializable {
 			this.imate = imate;
 		}
 		
-		public Integer getAge() {
+		public String getAge() {
 			return age;
 		}
-		public void setAge(Integer age) {
+		public void setAge(String age) {
 			this.age = age;
 		}
 		public String getCellfoneNumber() {

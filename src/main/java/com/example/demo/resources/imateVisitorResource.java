@@ -33,7 +33,7 @@ public class imateVisitorResource {
 		
 	Imate im = new Imate(1, 54, "Male", "Jack Lane", 488944);
 		
-		ImateVisitors imV= new ImateVisitors(1, "Jhon Card", 34, 84941984, "992120527", im);
+		ImateVisitors imV= new ImateVisitors(1, "Jhon Card", "34", 84941984, "992120527", im);
 		imateVisitorRepository.save(imV);
 		
 		return imateVisitorRepository.findAll();
