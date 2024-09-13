@@ -35,8 +35,8 @@ public class imateVisitorResource {
 		
 	Imate im = new Imate(1, 54, "Male", "Jack Lane", 488944);
 		
-		ImateVisitors imV= new ImateVisitors(1, "Jhon Card", "34", 84941984, "992120527", im);
-		imateVisitorRepository.save(imV);
+		//ImateVisitors imV= new ImateVisitors(1, "Jhon Card", "34", 84941984, "992120527", im);
+	//	imateVisitorRepository.save(imV);
 		
 		return imateVisitorRepository.findAll();
 	}
@@ -46,8 +46,6 @@ public class imateVisitorResource {
 	    Optional<ImateVisitors> imateVisitor = imateVisitorRepository.findById(id);
 	    return imateVisitor.orElse(null);
 	}
-
-
 
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<String> createVisitor(@RequestBody ImateVisitors request) {
