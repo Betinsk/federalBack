@@ -1,6 +1,5 @@
 package com.example.demo.resources;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,23 +9,29 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Imate;
 import com.example.demo.repository.ImateRepository;
+import com.example.demo.service.ImateService;
 
 @RestController
 @RequestMapping(value="/imates")
 public class ImateResource {
 	
 	@Autowired
-	ImateRepository imateRepository;
+	private ImateService imateService;
+	@Autowired
+	private ImateRepository imateRepository;
+
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@Autowired
+	
+	@GetMapping
 		public List<Imate> Listar() {
 		
 		Imate imt = new Imate(1, 56, "Male", "Whiter White", 45498189);
@@ -39,12 +44,13 @@ public class ImateResource {
 	}
 	
 	 @GetMapping("/{id}")
-	    public Imate findById(@PathVariable Integer id) {
-	        Optional<Imate> optionalImate = imateRepository.findById(id);
-	        return optionalImate.orElse(null);
+	    public ResponseEntity<Imate> findById(@PathVariable Integer id) {
+	        Imate optionalImate = imateService.find(id);
+			return ResponseEntity.ok().body(optionalImate);
 	    }
+	 
 
-		@RequestMapping(method=RequestMethod.POST)
+		@PostMapping
 	    public ResponseEntity<Imate> createImate(@RequestBody Imate imate) {
 	        try {
 	        	Imate savedImate = imateRepository.save(imate);
