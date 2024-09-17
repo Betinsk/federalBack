@@ -103,6 +103,16 @@ public class ImateVisitors implements Serializable {
 			return Objects.equals(id, other.id);
 		}
 	
+		@Override
+	    public String toString() {
+	        return "ImateVisitors{" +
+	                "id=" + id +
+	                ", name='" + name + '\'' +
+	                ", age='" + age + '\'' +
+	                ", socialSecure=" + socialSecure +
+	                ", cellfoneNumber='" + cellfoneNumber + '\'' +
+	                '}';
+	    }
 		
 		
 }
