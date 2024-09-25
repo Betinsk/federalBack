@@ -1,6 +1,8 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -9,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class ImateVisitors implements Serializable {
@@ -25,10 +28,15 @@ public class ImateVisitors implements Serializable {
 		private Integer socialSecure;
 		private String cellfoneNumber;
 		
+		 @OneToMany(mappedBy = "imateVisitor")
+		 private List<Address> addresses = new ArrayList<>();
+
 		
 		@ManyToOne
 	    @JoinColumn(name = "imate_id", referencedColumnName = "id")
 	    private Imate imate;
+		
+		
 
 		public ImateVisitors() {
 			
@@ -86,6 +94,15 @@ public class ImateVisitors implements Serializable {
 			this.socialSecure = socialSecure;
 		}
 
+		
+		
+		
+		public List<Address> getAddresses() {
+			return addresses;
+		}
+		public void setAddresses(List<Address> addresses) {
+			this.addresses = addresses;
+		}
 		@Override
 		public int hashCode() {
 			return Objects.hash(id);

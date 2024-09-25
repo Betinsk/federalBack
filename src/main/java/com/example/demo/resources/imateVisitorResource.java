@@ -22,13 +22,13 @@ public class imateVisitorResource {
 	@Autowired
 	ImateVisitorService imateVisitorService;
 	
-@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public List<ImateVisitors> Listar() {
 		
 	Imate im = new Imate(1, 54, "Male", "Jack Lane", 488944);
 		
-		//ImateVisitors imV= new ImateVisitors(1, "Jhon Card", "34", 84941984, "992120527", im);
-	//	imateVisitorRepository.save(imV);
+	ImateVisitors imV= new ImateVisitors(1, "Jhon Card", "34", 84941984, "992120527", im);
+		imateVisitorRepository.save(imV);
 		
 		return imateVisitorRepository.findAll();
 	}

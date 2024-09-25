@@ -1,7 +1,6 @@
 package com.example.demo.resources;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,17 +27,13 @@ public class ImateResource {
 	@Autowired
 	private ImateRepository imateRepository;
 
-	
-	@Autowired
+
 	
 	@GetMapping
 		public List<Imate> Listar() {
 		
-		Imate imt = new Imate(1, 56, "Male", "Whiter White", 45498189);
-		Imate imt2 = new Imate(2, 23, "Male", "Jessy Pinkman", 4894894);
 		
-		imateRepository.save(imt);
-		imateRepository.save(imt2);
+	
 
 		return imateRepository.findAll();
 	}

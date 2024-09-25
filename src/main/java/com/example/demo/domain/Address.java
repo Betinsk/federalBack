@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Address implements Serializable {
@@ -23,9 +24,18 @@ public class Address implements Serializable {
     private String number;
 
     @ManyToOne
-    @JoinColumn(name = "city_id", nullable = false)
+    @JoinColumn(name = "city_id")
     private City city;
+    
+    @ManyToOne
+	@OneToMany(mappedBy = "imate")
+    private Imate imate;
 
+    @ManyToOne
+    @JoinColumn(name = "imateVisitor_id")
+    private ImateVisitors imateVisitor;
+    
+    
     public Address() {
     }
 

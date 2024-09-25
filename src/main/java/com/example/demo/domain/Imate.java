@@ -1,12 +1,16 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 
 @Entity
@@ -24,6 +28,9 @@ public class Imate implements Serializable{
 	private String name;
 	private Integer socialSecurity;
 
+	@OneToMany
+    @JoinColumn(name = "imate_id") // Nome da coluna de referência
+	private List<Address> addresses = new ArrayList<>();
 	
 	public Imate() {
 		
@@ -78,6 +85,15 @@ public class Imate implements Serializable{
 	public void setSocialSecurity(Integer socialSecurity) {
 		this.socialSecurity = socialSecurity;
 	}
+	
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
 
 	@Override
 	public int hashCode() {
@@ -98,3 +114,4 @@ public class Imate implements Serializable{
 	
 	
 }
+ 

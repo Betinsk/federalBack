@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +28,7 @@ public class City implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "state_id")
+    @JsonIgnoreProperties("cities") 
     private State state;
 
     @OneToMany(mappedBy = "city")

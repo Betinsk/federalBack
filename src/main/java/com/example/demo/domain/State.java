@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +27,7 @@ public class State implements Serializable {
 		private String state;
 		
 		@OneToMany(mappedBy = "state")
+		@JsonManagedReference
 	    private List<City> cities = new ArrayList<>();
 		
 		
