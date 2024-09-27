@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 
@@ -28,10 +30,14 @@ public class Imate implements Serializable{
 	private String name;
 	private Integer socialSecurity;
 
-	@OneToMany
-    @JoinColumn(name = "imate_id") // Nome da coluna de referência
-	private List<Address> addresses = new ArrayList<>();
+	@OneToMany(mappedBy ="imate")
+	private List<Address> addresses = new ArrayList<>(); 
 	
+	@ManyToMany(mappedBy = "imates")
+    @JsonIgnoreProperties("imates")
+    private List<ImateVisitors> visitors;
+	
+
 	public Imate() {
 		
 	}
@@ -93,6 +99,16 @@ public class Imate implements Serializable{
 
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
+	}
+	
+	
+
+	public List<ImateVisitors> getVisitors() {
+		return visitors;
+	}
+
+	public void setVisitors(List<ImateVisitors> visitors) {
+		this.visitors = visitors;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.example.demo.resources;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,26 +10,25 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.domain.Imate;
 import com.example.demo.domain.ImateVisitors;
-import com.example.demo.repository.imateVisitorRepository;
+import com.example.demo.repository.ImateRepository;
+import com.example.demo.repository.ImateVisitorRepository;
 import com.example.demo.service.ImateVisitorService;
 
 @RestController
 @RequestMapping(value="/visitor")
-public class imateVisitorResource {
+public class ImateVisitorResource {
 	
 	@Autowired
-	imateVisitorRepository imateVisitorRepository;
+	ImateVisitorRepository imateVisitorRepository;
 	
+		
 	@Autowired
-	ImateVisitorService imateVisitorService;
+	ImateRepository  imateRepository;
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@GetMapping
 	public List<ImateVisitors> Listar() {
 		
-	Imate im = new Imate(1, 54, "Male", "Jack Lane", 488944);
-		
-	ImateVisitors imV= new ImateVisitors(1, "Jhon Card", "34", 84941984, "992120527", im);
-		imateVisitorRepository.save(imV);
+	
 		
 		return imateVisitorRepository.findAll();
 	}

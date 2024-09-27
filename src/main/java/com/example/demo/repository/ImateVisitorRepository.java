@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.domain.ImateVisitors;
 
 @Repository
-public interface imateVisitorRepository extends JpaRepository<ImateVisitors, Integer> {
+public interface ImateVisitorRepository extends JpaRepository<ImateVisitors, Integer> {
 
 	
 }

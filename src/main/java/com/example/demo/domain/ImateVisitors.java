@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -28,26 +31,27 @@ public class ImateVisitors implements Serializable {
 		private Integer socialSecure;
 		private String cellfoneNumber;
 		
+		 @ManyToMany
+		    @JoinTable(
+		        name = "imate_Visitors_join", // Nome da tabela de junção
+		        joinColumns = @JoinColumn(name = "visitor_id"), // Chave estrangeira para Visitante
+		        inverseJoinColumns = @JoinColumn(name = "imate_id") // Chave estrangeira para Preso
+		    )
+		    private List<Imate> imates = new ArrayList<>();
+		
 		 @OneToMany(mappedBy = "imateVisitor")
 		 private List<Address> addresses = new ArrayList<>();
 
-		
-		@ManyToOne
-	    @JoinColumn(name = "imate_id", referencedColumnName = "id")
-	    private Imate imate;
-		
-		
 
 		public ImateVisitors() {
 			
 		}
-		public ImateVisitors(Integer id, String name, String age, Integer socialSecure,  String cellfoneNumber, Imate imate) {
+		public ImateVisitors(Integer id, String name, String age, Integer socialSecure,  String cellfoneNumber) {
 			this.id = id;
 			this.name = name;
 			this.age = age;
 			this.socialSecure = socialSecure;
 			this.cellfoneNumber = cellfoneNumber;
-			this.imate = imate;
 
 		}
 
@@ -67,13 +71,7 @@ public class ImateVisitors implements Serializable {
 			this.name = name;
 		}
 
-		public Imate getImate() {
-			return imate;
-		}
 
-		public void setImate(Imate imate) {
-			this.imate = imate;
-		}
 		
 		public String getAge() {
 			return age;
@@ -95,8 +93,12 @@ public class ImateVisitors implements Serializable {
 		}
 
 		
-		
-		
+		public List<Imate> getImates() {
+			return imates;
+		}
+		public void setImates(List<Imate> imates) {
+			this.imates = imates;
+		}
 		public List<Address> getAddresses() {
 			return addresses;
 		}
@@ -128,7 +130,7 @@ public class ImateVisitors implements Serializable {
 	                ", age='" + age + '\'' +
 	                ", socialSecure=" + socialSecure +
 	                ", cellfoneNumber='" + cellfoneNumber + '\'' +
-	                '}';
+	                '}' + imates;
 	    }
 		
 		

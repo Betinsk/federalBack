@@ -31,8 +31,6 @@ public class ImateResource {
 	
 	@GetMapping
 		public List<Imate> Listar() {
-		
-		
 	
 
 		return imateRepository.findAll();

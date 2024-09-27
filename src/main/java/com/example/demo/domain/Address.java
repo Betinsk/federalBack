@@ -3,6 +3,8 @@ package com.example.demo.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,26 +29,32 @@ public class Address implements Serializable {
     @JoinColumn(name = "city_id")
     private City city;
     
-    @ManyToOne
-	@OneToMany(mappedBy = "imate")
-    private Imate imate;
+    
+	@ManyToOne
+	@JoinColumn(name = "imate_id")
+    @JsonIgnoreProperties("addresses") 
+    private Imate imate; 
+	
 
     @ManyToOne
     @JoinColumn(name = "imateVisitor_id")
     private ImateVisitors imateVisitor;
-    
-    
+     
+     
     public Address() {
     }
 
-    public Address(Integer id, String street, String number, City city) {
-        this.id = id;
-        this.street = street;
-        this.number = number;
-        this.city = city;
-    }
+    public Address(Integer id, String street, String number, City city, Imate imate, ImateVisitors imateVisitor) {
+		this.id = id;
+		this.street = street;
+		this.number = number;
+		this.city = city;
+		this.imate = imate;
+		this.imateVisitor = imateVisitor;
+	}
 
-    // Getters e Setters
+
+	// Getters e Setters
     public Integer getId() {
         return id;
     }
@@ -78,8 +86,25 @@ public class Address implements Serializable {
     public void setCity(City city) {
         this.city = city;
     }
+    
 
-    @Override
+    public Imate getImate() {
+		return imate;
+	}
+
+	public void setImate(Imate imate) {
+		this.imate = imate;
+	}
+
+	public ImateVisitors getImateVisitor() {
+		return imateVisitor;
+	}
+
+	public void setImateVisitor(ImateVisitors imateVisitor) {
+		this.imateVisitor = imateVisitor;
+	}
+
+	@Override
     public int hashCode() {
         return Objects.hash(id);
     }

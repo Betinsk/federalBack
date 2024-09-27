@@ -11,19 +11,7 @@ import jakarta.persistence.PersistenceContext;
 @Service
 public class ImateVisitorService {
 
-		@PersistenceContext
-	    private EntityManager entityManager;
-
-	    public void createVisitor(String nameVisitor, Imate imate) {
-	  
-	        // Crie uma nova instância de Parente
-	        ImateVisitors visitor = new ImateVisitors();
-	        visitor.setName(nameVisitor);
-	      //  visitor.setImate(imate);
-
-	        // Persista o Parente no banco de dados
-	        entityManager.persist(nameVisitor);
-	    }
+		
 
 		
 	}
