@@ -9,7 +9,7 @@ public class GlobalCors implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000") // Permitir solicitações do domínio do React
+                .allowedOrigins("http://localhost:3000", "https://prisaofederaljava.netlify.app") // Permitir solicitações do domínio do React
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*")
                 .allowCredentials(true);

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.DTO.ImateDto;
 import com.example.demo.domain.Imate;
 import com.example.demo.repository.ImateRepository;
+import com.example.demo.resources.exceptions.ErrorResponse;
 import com.example.demo.service.ImateService;
 
 @RestController
@@ -23,9 +25,10 @@ import com.example.demo.service.ImateService;
 public class ImateResource {
 	
 	@Autowired
-	private ImateService imateService;
+	 ImateService imateService;
+	
 	@Autowired
-	private ImateRepository imateRepository;
+	 ImateRepository imateRepository;
 
 
 	
@@ -36,14 +39,25 @@ public class ImateResource {
 		return imateRepository.findAll();
 	}
 	
-	 @GetMapping("/{id}")
+		@GetMapping("/{id}")
 	    public ResponseEntity<Imate> findById(@PathVariable Integer id) {
 	        Imate optionalImate = imateService.find(id);
 			return ResponseEntity.ok().body(optionalImate);
 	    }
+		
+		@PostMapping
+	    public ResponseEntity<Imate> createImate(@RequestBody ImateDto imateDto) {
+			  try {
+			Imate imate = imateService.createImate(imateDto);
+	        return new ResponseEntity<>(imate, HttpStatus.CREATED);
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 	 
 
-		@PostMapping
+	/*	@PostMapping
 	    public ResponseEntity<Imate> createImate(@RequestBody Imate imate) {
 	        try {
 	        	Imate savedImate = imateRepository.save(imate);
@@ -52,7 +66,9 @@ public class ImateResource {
 	            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	        }
 	    }
+	    */
 	
+		
 		
 		 @PutMapping("/{id}")
 		    public ResponseEntity<Imate> updateImate(@PathVariable Integer id, @RequestBody Imate updatedImate) {

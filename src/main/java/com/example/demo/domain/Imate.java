@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,7 +31,7 @@ public class Imate implements Serializable{
 	private String name;
 	private Integer socialSecurity;
 
-	@OneToMany(mappedBy ="imate")
+	@OneToMany(mappedBy ="imate", cascade = CascadeType.ALL)
 	private List<Address> addresses = new ArrayList<>(); 
 	
 	@ManyToMany(mappedBy = "imates")
