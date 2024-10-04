@@ -6,6 +6,7 @@ public class ImateDto {
 	private String gender;
 	private String name;
 	private Integer socialSecurity;
+	private String commitedCrime;
 	
 	AddressDto addressDto;
 	
@@ -51,6 +52,20 @@ public class ImateDto {
 
 	public void setAddressDto(AddressDto addressDto) {
 		this.addressDto = addressDto;
+	}
+
+	@Override
+	public String toString() {
+		return "ImateDto [age=" + age + ", gender=" + gender + ", name=" + name + ", socialSecurity=" + socialSecurity
+				+ ", addressDto=" + addressDto + "]";
+	}
+
+	public String getCommitedCrime() {
+		return commitedCrime;
+	}
+
+	public void setCommitedCrime(String commitedCrime) {
+		this.commitedCrime = commitedCrime;
 	}
 	
 	

@@ -7,11 +7,11 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
@@ -30,8 +30,11 @@ public class Imate implements Serializable{
 	private String gender;
 	private String name;
 	private Integer socialSecurity;
+	
+    @Lob // Para armazenar texto longo, sem limite específico
+	private String commitedCrime;
 
-	@OneToMany(mappedBy ="imate", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy ="imate")
 	private List<Address> addresses = new ArrayList<>(); 
 	
 	@ManyToMany(mappedBy = "imates")
@@ -43,13 +46,14 @@ public class Imate implements Serializable{
 		
 	}
 
-	public Imate(Integer id, Integer age, String gender, String name, Integer socialSecurity) {
+	public Imate(Integer id, Integer age, String gender, String name, Integer socialSecurity, String commitedCrime) {
 		super();
 		this.id = id;
 		this.age = age;
 		this.gender = gender;
 		this.name = name;
 		this.socialSecurity = socialSecurity;
+		this.commitedCrime = commitedCrime;
 	}
 
 	public Integer getId() {
@@ -116,6 +120,13 @@ public class Imate implements Serializable{
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+	
+
+	@Override
+	public String toString() {
+		return "Imate [id=" + id + ", age=" + age + ", gender=" + gender + ", name=" + name + ", socialSecurity="
+				+ socialSecurity + ", addresses=" + addresses + ", visitors=" + visitors + "]";
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -127,6 +138,14 @@ public class Imate implements Serializable{
 			return false;
 		Imate other = (Imate) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public String getCommitedCrime() {
+		return commitedCrime;
+	}
+
+	public void setCommitedCrime(String commitedCrime) {
+		this.commitedCrime = commitedCrime;
 	}
 	
 	

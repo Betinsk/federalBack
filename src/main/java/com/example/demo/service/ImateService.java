@@ -22,7 +22,7 @@ public class ImateService {
 	private ImateRepository imateRepository;
 	
 	@Autowired
-	private static AddressService addressService; 
+	private  AddressService addressService; // <-- Estava dando um erro de adressService nulo, porque estava static essa instancia 
 	
 	
 	public Imate find(Integer id) {
@@ -35,21 +35,32 @@ public class ImateService {
     @Transactional
 	public Imate createImate(ImateDto imateDto) {
 		
+		//System.out.print(imateDto);
+
 		Imate imate = new Imate();
+		
+		Address address = addressService.createAddress(imateDto.getAddressDto());
+		
+		System.out.print(imateDto.getAddressDto());
+
+		// Criar uma lista de endereços (mesmo que seja apenas um)
+	    List<Address> addresses = new ArrayList<>();
+	    addresses.add(address);
+
+		//System.out.print(address);
+
+	    // Associar a lista de endereços ao Imate
+	    imate.setAddresses(addresses);
 		
 		imate.setAge(imateDto.getAge());
 		imate.setGender(imateDto.getGender());
 		imate.setName(imateDto.getName());
 		imate.setSocialSecurity(imateDto.getSocialSecurity());
+		imate.setCommitedCrime(imateDto.getCommitedCrime());
 		
-		Address address = addressService.createAddress(imateDto.getAddressDto());
+		address.setImate(imate);
 		
-		// Criar uma lista de endereços (mesmo que seja apenas um)
-	    List<Address> addresses = new ArrayList<>();
-	    addresses.add(address);
-
-	    // Associar a lista de endereços ao Imate
-	    imate.setAddresses(addresses);
+	//	System.out.print(imate);
 
 	    // Salvar o Imate (exemplo de como salvar, depende da sua lógica)
 	    return imateRepository.save(imate);

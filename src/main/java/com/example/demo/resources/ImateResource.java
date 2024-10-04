@@ -46,13 +46,15 @@ public class ImateResource {
 	    }
 		
 		@PostMapping
-	    public ResponseEntity<Imate> createImate(@RequestBody ImateDto imateDto) {
+	    public ResponseEntity<String> createImate(@RequestBody ImateDto imateDto) {
 			  try {
 			Imate imate = imateService.createImate(imateDto);
-	        return new ResponseEntity<>(imate, HttpStatus.CREATED);
+			
+            return ResponseEntity.ok("Imate criado com sucesso!");
         } catch (Exception e) {
 
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        	 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                     .body("Erro ao criar imate: " + e.getMessage());
         }
     }
 	 

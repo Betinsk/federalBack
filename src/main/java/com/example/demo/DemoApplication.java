@@ -62,9 +62,10 @@ public class DemoApplication implements CommandLineRunner {
 		cityRepository.saveAll(Arrays.asList(ct1,ct2, ct3));
 		
 		
-    	Imate imt = new Imate(null, 56, "Male", "Whiter White", 45498189);
-		Imate imt2 = new Imate(null, 23, "Male", "Jessy Pinkman", 4894894);
-		Imate imt3 = new Imate(null, 54, "Male", "Jack Lane", 488944);
+    	Imate imt = new Imate(null, 56, "Male", "Whiter White", 45498189, "Drug dealer, murderer, money laundering");
+		Imate imt2 = new Imate(null, 23, "Male", "Jessy Pinkman", 4894894, "Drug dealer, murderer, money laundering");
+		
+		Imate imt3 = new Imate(null, 54, "Male", "Jack Lane", 488944, "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
 
 		
 		Address adr1 = new Address(null, "5th Avenue", "350", ct1, imt, null);
