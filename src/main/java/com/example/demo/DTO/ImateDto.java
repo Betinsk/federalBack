@@ -4,7 +4,7 @@ public class ImateDto {
 	
 	private Integer age;
 	private String gender;
-	private String name;
+	private String imateName;
 	private Integer socialSecurity;
 	private String commitedCrime;
 	
@@ -31,11 +31,11 @@ public class ImateDto {
 	}
 
 	public String getName() {
-		return name;
+		return imateName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String imateName) {
+		this.imateName = imateName;
 	}
 
 	public Integer getSocialSecurity() {
@@ -56,7 +56,7 @@ public class ImateDto {
 
 	@Override
 	public String toString() {
-		return "ImateDto [age=" + age + ", gender=" + gender + ", name=" + name + ", socialSecurity=" + socialSecurity
+		return "ImateDto [age=" + age + ", gender=" + gender + ", imateName=" + imateName + ", socialSecurity=" + socialSecurity
 				+ ", addressDto=" + addressDto + "]";
 	}
 
