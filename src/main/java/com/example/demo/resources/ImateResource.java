@@ -48,6 +48,8 @@ public class ImateResource {
 		@PostMapping
 		public ResponseEntity<Map<String, Object>> createImate(@RequestBody ImateDto imateDto) {
 		    Map<String, Object> response = new HashMap<>();
+            System.out.println("Objeto recebido: " + imateDto.toString());
+
 		    try {
 		        Imate imate = imateService.createImate(imateDto);
 		        response.put("message", "Imate criado com sucesso!");
@@ -59,7 +61,32 @@ public class ImateResource {
 		    }
 		}
 
+		
+/*		@PostMapping
+	    public ResponseEntity<String> createImate(@RequestBody ImateDto imateDto) {
+			  try {
+			Imate imate = imateService.createImate(imateDto);
 			
+            return ResponseEntity.ok("Imate criado com sucesso!");
+        } catch (Exception e) {
+
+        	 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                     .body("Erro ao criar imate: " + e.getMessage());
+        }
+    }
+	 
+
+	/*	@PostMapping
+	    public ResponseEntity<Imate> createImate(@RequestBody Imate imate) {
+	        try {
+	        	Imate savedImate = imateRepository.save(imate);
+	            return new ResponseEntity<>(savedImate, HttpStatus.CREATED);
+	        } catch (Exception e) {
+	            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	        }
+	    }
+	    */
+	
 		
 		 @PutMapping("/{id}")
 		    public ResponseEntity<Imate> updateImate(@PathVariable Integer id, @RequestBody Imate updatedImate) {
