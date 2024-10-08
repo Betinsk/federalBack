@@ -33,11 +33,21 @@ public class ImateResource {
 
 
 	@GetMapping
-		public List<Imate> Listar() {
-	
-
-		return imateRepository.findAll();
+	public ResponseEntity<List<Imate>> listar() {
+	    try {
+	        List<Imate> imates = imateRepository.findAll();
+	        // Verifica se a lista está vazia e retorna 204 (No Content) se não houver registros
+	        if (imates.isEmpty()) {
+	            return ResponseEntity.noContent().build();
+	        }
+	        // Retorna a lista de imates com o status 200 (OK)
+	        return ResponseEntity.ok(imates);
+	    } catch (Exception e) {
+	        // Em caso de erro, retorna 500 (Internal Server Error)
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	    }
 	}
+
 	
 		@GetMapping("/{id}")
 	    public ResponseEntity<Imate> findById(@PathVariable Integer id) {
@@ -61,32 +71,6 @@ public class ImateResource {
 		    }
 		}
 
-		
-/*		@PostMapping
-	    public ResponseEntity<String> createImate(@RequestBody ImateDto imateDto) {
-			  try {
-			Imate imate = imateService.createImate(imateDto);
-			
-            return ResponseEntity.ok("Imate criado com sucesso!");
-        } catch (Exception e) {
-
-        	 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                     .body("Erro ao criar imate: " + e.getMessage());
-        }
-    }
-	 
-
-	/*	@PostMapping
-	    public ResponseEntity<Imate> createImate(@RequestBody Imate imate) {
-	        try {
-	        	Imate savedImate = imateRepository.save(imate);
-	            return new ResponseEntity<>(savedImate, HttpStatus.CREATED);
-	        } catch (Exception e) {
-	            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-	        }
-	    }
-	    */
-	
 		
 		 @PutMapping("/{id}")
 		    public ResponseEntity<Imate> updateImate(@PathVariable Integer id, @RequestBody Imate updatedImate) {
