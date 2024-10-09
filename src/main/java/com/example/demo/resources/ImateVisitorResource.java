@@ -52,7 +52,6 @@ public class ImateVisitorResource {
 	@PostMapping
 	public ResponseEntity<Map<String, Object>> createImate(@RequestBody ImateVisitorDto imateVisitorDto) {
 	    Map<String, Object> response = new HashMap<>();
-        System.out.println("Objeto recebido: " + imateVisitorDto.toString());
 
 	    try {
 	        ImateVisitors imateVisitor = imateVisitorService.createVistor(imateVisitorDto);
