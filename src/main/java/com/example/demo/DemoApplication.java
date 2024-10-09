@@ -81,7 +81,7 @@ public class DemoApplication implements CommandLineRunner {
         addressRepository.saveAll(Arrays.asList(adr1, adr2, adr3, adr4));
         
         
-        ImateVisitors imV= new ImateVisitors(1, "Jhon Card", "34", 84941984, "992120527");
+        ImateVisitors imV= new ImateVisitors(1, "Jhon Card", "34", "Male", 84941984, "992120527");
         imV.getImates().addAll(Arrays.asList(imt));
         imateVisitorRepository.saveAll(Arrays.asList(imV));
      

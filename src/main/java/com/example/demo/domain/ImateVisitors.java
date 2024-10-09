@@ -28,16 +28,17 @@ public class ImateVisitors implements Serializable {
 		private Integer id;
 		private String name;
 		private String age;
+		private String gender;
 		private Integer socialSecure;
 		private String cellfoneNumber;
 		
 		 @ManyToMany
-		    @JoinTable(
+		 @JoinTable(
 		        name = "imate_Visitors_join", // Nome da tabela de junção
 		        joinColumns = @JoinColumn(name = "visitor_id"), // Chave estrangeira para Visitante
-		        inverseJoinColumns = @JoinColumn(name = "imate_id") // Chave estrangeira para Preso
-		    )
-		    private List<Imate> imates = new ArrayList<>();
+		        inverseJoinColumns = @JoinColumn(name = "imate_id")) // Chave estrangeira para Preso)
+		 @JsonIgnoreProperties("visitors") 
+		 private List<Imate> imates = new ArrayList<>();
 		
 		 @OneToMany(mappedBy = "imateVisitor")
 		 private List<Address> addresses = new ArrayList<>();
@@ -46,10 +47,11 @@ public class ImateVisitors implements Serializable {
 		public ImateVisitors() {
 			
 		}
-		public ImateVisitors(Integer id, String name, String age, Integer socialSecure,  String cellfoneNumber) {
+		public ImateVisitors(Integer id, String name, String age, String gender, Integer socialSecure,  String cellfoneNumber) {
 			this.id = id;
 			this.name = name;
 			this.age = age;
+			this.gender = gender;
 			this.socialSecure = socialSecure;
 			this.cellfoneNumber = cellfoneNumber;
 
@@ -105,6 +107,15 @@ public class ImateVisitors implements Serializable {
 		public void setAddresses(List<Address> addresses) {
 			this.addresses = addresses;
 		}
+		
+		public String getGender() {
+			return gender;
+		}
+		public void setGender(String gender) {
+			this.gender = gender;
+		}
+		
+		
 		@Override
 		public int hashCode() {
 			return Objects.hash(id);
@@ -132,6 +143,5 @@ public class ImateVisitors implements Serializable {
 	                ", cellfoneNumber='" + cellfoneNumber + '\'' +
 	                '}' + imates;
 	    }
-		
-		
+	
 }

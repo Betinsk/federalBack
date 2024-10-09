@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -35,10 +36,11 @@ public class Imate implements Serializable{
 	private String commitedCrime;
 
 	@OneToMany(mappedBy ="imate")
+    @JsonIgnoreProperties("imates")
 	private List<Address> addresses = new ArrayList<>(); 
 	
 	@ManyToMany(mappedBy = "imates")
-    @JsonIgnoreProperties("imates")
+    @JsonBackReference // Evita a serialização recursiva
     private List<ImateVisitors> visitors;
 	
 

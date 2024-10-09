@@ -38,6 +38,7 @@ public class Address implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "imateVisitor_id")
+    @JsonIgnoreProperties("addresses") 
     private ImateVisitors imateVisitor;
      
      
