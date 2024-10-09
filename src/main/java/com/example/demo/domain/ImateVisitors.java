@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,7 +37,7 @@ public class ImateVisitors implements Serializable {
 		        name = "imate_Visitors_join", // Nome da tabela de junção
 		        joinColumns = @JoinColumn(name = "visitor_id"), // Chave estrangeira para Visitante
 		        inverseJoinColumns = @JoinColumn(name = "imate_id")) // Chave estrangeira para Preso)
-		 @JsonIgnoreProperties("visitors") 
+		// @JsonManagedReference
 		 private List<Imate> imates = new ArrayList<>();
 		
 		 @OneToMany(mappedBy = "imateVisitor")
@@ -81,6 +81,7 @@ public class ImateVisitors implements Serializable {
 		public void setAge(String age) {
 			this.age = age;
 		}
+	
 		public String getCellfoneNumber() {
 			return cellfoneNumber;
 		}

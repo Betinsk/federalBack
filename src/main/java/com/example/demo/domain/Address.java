@@ -3,15 +3,16 @@ package com.example.demo.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Address implements Serializable {
@@ -30,15 +31,16 @@ public class Address implements Serializable {
     private City city;
     
     
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "imate_id")
-    @JsonIgnoreProperties("addresses") 
+    @JsonIgnore // Evita a serialização de imates dentro de addresses
     private Imate imate; 
 	
 
-    @ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "imateVisitor_id")
     @JsonIgnoreProperties("addresses") 
+    @JsonIgnore // Evita a serialização de imateVisitor dentro de addresses
     private ImateVisitors imateVisitor;
      
      

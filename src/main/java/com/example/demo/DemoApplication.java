@@ -48,10 +48,10 @@ public class DemoApplication implements CommandLineRunner {
 		
 	
 		
-		State st1 = new State(null, "New York");
+		State st1 = new State(null, "NEY MEXICO");
 		State st2 = new State(null, "Florida");
 		
-		City ct1 = new City(null, "RichVile" , st1);
+		City ct1 = new City(null, "ALBUQUERQUE" , st1);
 		City ct2 = new City(null, "Beach" , st2);
 		City ct3 = new City(null, "Miame" , st2);
 
@@ -64,26 +64,32 @@ public class DemoApplication implements CommandLineRunner {
 		
     	Imate imt = new Imate(null, 56, "Male", "Whiter White", 45498189, "Drug dealer, murderer, money laundering");
 		Imate imt2 = new Imate(null, 23, "Male", "Jessy Pinkman", 4894894, "Drug dealer, murderer, money laundering");
-		
-		Imate imt3 = new Imate(null, 54, "Male", "Jack Lane", 488944, "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+		Imate imt3 = new Imate(null, 54, "Fem", "Skyler White", 488944, "Lorem Ippularised in the 1960sions of Lorem Ipsum.");
 
-		
+
+
 		Address adr1 = new Address(null, "5th Avenue", "350", ct1, imt, null);
         Address adr2 = new Address(null, "Ocean Drive", "1000" , ct2, imt2, null);
         Address adr3 = new Address(null, "Broadway", "123", ct1, imt, null);
         Address adr4 = new Address(null, "Florida Avenue", "500",ct2, imt3, null);
         
-		//imt.getAddresses().addAll(Arrays.asList(adr1));
-		///imt2.getAddresses().addAll(Arrays.asList(adr2));
+        ImateVisitors imV= new ImateVisitors(null, "Saul Godman", "34", "Male", 84941984, "992120527");
+
+        imV.setAddresses(Arrays.asList(adr1, adr2));
+
         
-		
+        imV.setImates(Arrays.asList(imt));
+        imt.setVisitors(Arrays.asList(imV));
+        adr4.setImateVisitor(imV);
+       
 		imateRepository.saveAll(Arrays.asList(imt, imt2, imt3));
         addressRepository.saveAll(Arrays.asList(adr1, adr2, adr3, adr4));
         
-        
-        ImateVisitors imV= new ImateVisitors(1, "Jhon Card", "34", "Male", 84941984, "992120527");
-        imV.getImates().addAll(Arrays.asList(imt));
+
         imateVisitorRepository.saveAll(Arrays.asList(imV));
+
+        
+       
      
 
 	}

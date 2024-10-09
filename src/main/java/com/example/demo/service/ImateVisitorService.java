@@ -46,6 +46,7 @@ public class ImateVisitorService {
 		    imateVisitor.setGender(imateVisitorDto.getGender());
 		    imateVisitor.setName(imateVisitorDto.getName());
 		    imateVisitor.setSocialSecure(imateVisitorDto.getSocialSecure());
+		    imateVisitor.setCellfoneNumber(imateVisitorDto.getCellfoneNumber());
 		    imateVisitor.setImates(imateVisitorDto.getImates());
 			
 			address.setImateVisitor(imateVisitor);

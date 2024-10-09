@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,12 +20,10 @@ import jakarta.persistence.OneToMany;
 
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Imate implements Serializable{
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -40,7 +40,7 @@ public class Imate implements Serializable{
 	private List<Address> addresses = new ArrayList<>(); 
 	
 	@ManyToMany(mappedBy = "imates")
-    @JsonBackReference // Evita a serialização recursiva
+	//@JsonBackReference
     private List<ImateVisitors> visitors;
 	
 
