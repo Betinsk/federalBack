@@ -38,3 +38,23 @@ POST /addresses - Create a new address.
 GET /addresses/{id} - Retrieve a specific address by ID.
 PUT /addresses/{id} - Update a specific address by ID.
 DELETE /addresses/{id} - Delete a specific address by ID.
+
+
+API Documentation (Documentação da API)
+EndPoints: 
+Exemplo:
+GET /imates: Retorna uma lista de presos.
+POST /visitors: Cria um novo visitante.
+Exemplo de Requisições/Respostas: Exemplos de payloads de requisições e as respostas possíveis (inclusive os erros).
+Exemplo:
+json
+Copiar código
+POST /visitors
+{
+  "name": "Jhon Card",
+  "age": "34",
+  "socialSecure": 84941984,
+  "imates": [
+    { "id": 251}
+    ]
+  }
