@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -40,12 +39,12 @@ public class ImateVisitors implements Serializable {
 		// @JsonManagedReference
 		 private List<Imate> imates = new ArrayList<>();
 		
-		 @OneToMany(mappedBy = "imateVisitor")
+		 @OneToMany(mappedBy = "imateVisitor", cascade = CascadeType.REMOVE)
 		 private List<Address> addresses = new ArrayList<>();
 
 
 		public ImateVisitors() {
-			
+			 
 		}
 		public ImateVisitors(Integer id, String name, String age, String gender, Integer socialSecure,  String cellfoneNumber) {
 			this.id = id;

@@ -52,7 +52,7 @@ public class ImateService {
 	    // Associar a lista de endereços ao Imate
 	    imate.setAddresses(addresses);
 		
-		imate.setAge(imateDto.getAge());
+		imate.setDateOfBirth(imateDto.getDateOfBirth());
 		imate.setGender(imateDto.getGender());
 		imate.setName(imateDto.getName());
 		imate.setSocialSecurity(imateDto.getSocialSecurity());

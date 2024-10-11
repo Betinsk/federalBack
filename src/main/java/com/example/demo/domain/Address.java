@@ -36,6 +36,11 @@ public class Address implements Serializable {
     @JsonIgnore // Evita a serialização de imates dentro de addresses
     private Imate imate; 
 	
+	@ManyToOne()
+	@JoinColumn(name = "person_id")
+    //@JsonIgnore // Evita a serialização de imates dentro de addresses
+    private Person person; 
+	
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "imateVisitor_id")
@@ -105,6 +110,15 @@ public class Address implements Serializable {
 
 	public void setImateVisitor(ImateVisitors imateVisitor) {
 		this.imateVisitor = imateVisitor;
+	}
+
+	
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 	@Override

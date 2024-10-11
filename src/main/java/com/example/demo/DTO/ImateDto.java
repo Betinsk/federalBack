@@ -1,8 +1,10 @@
 package com.example.demo.DTO;
 
+import java.time.LocalDate;
+
 public class ImateDto {
 	
-	private Integer age;
+	private LocalDate dateOfBirth;
 	private String gender;
 	private String imateName;
 	private Integer socialSecurity;
@@ -14,13 +16,16 @@ public class ImateDto {
 		
 	}
 
-	public Integer getAge() {
-		return age;
+	
+
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
+
 
 	public String getGender() {
 		return gender;
@@ -56,7 +61,7 @@ public class ImateDto {
 
 	@Override
 	public String toString() {
-		return "ImateDto [age=" + age + ", gender=" + gender + ", imateName=" + imateName + ", socialSecurity=" + socialSecurity
+		return "ImateDto [age=" + dateOfBirth + ", gender=" + gender + ", imateName=" + imateName + ", socialSecurity=" + socialSecurity
 				+ ", addressDto=" + addressDto + "]";
 	}
 

@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,13 @@ import com.example.demo.domain.Address;
 import com.example.demo.domain.City;
 import com.example.demo.domain.Imate;
 import com.example.demo.domain.ImateVisitors;
+import com.example.demo.domain.Person;
 import com.example.demo.domain.State;
 import com.example.demo.repository.AddressRepository;
 import com.example.demo.repository.CityRepository;
 import com.example.demo.repository.ImateRepository;
 import com.example.demo.repository.ImateVisitorRepository;
+import com.example.demo.repository.PersonRepository;
 import com.example.demo.repository.StateRepository;
 
 @SpringBootApplication
@@ -34,9 +37,10 @@ public class DemoApplication implements CommandLineRunner {
 	 ImateRepository imateRepository;
 	
 	@Autowired
-	
 	ImateVisitorRepository imateVisitorRepository;
 	
+	@Autowired
+	PersonRepository personRepository;
 	
 	
 	public static void main(String[] args) {
@@ -62,10 +66,11 @@ public class DemoApplication implements CommandLineRunner {
 		cityRepository.saveAll(Arrays.asList(ct1,ct2, ct3));
 		
 		
-    	Imate imt = new Imate(null, 56, "Male", "Whiter White", 45498189, "Drug dealer, murderer, money laundering");
-		Imate imt2 = new Imate(null, 23, "Male", "Jessy Pinkman", 4894894, "Drug dealer, murderer, money laundering");
-		Imate imt3 = new Imate(null, 54, "Fem", "Skyler White", 488944, "Lorem Ippularised in the 1960sions of Lorem Ipsum.");
+		Imate imt = new Imate(null,"Male", LocalDate.of(1968, 3, 15),  "Whiter White", 45498189, "Drug dealer, murderer, money laundering");
+		Imate imt2 = new Imate(null,"Male", LocalDate.of(2001, 6, 23),  "Saul Godman", 4894894, "Drug dealer, murderer, money laundering");
+		Imate imt3 = new Imate(null, "Fem", LocalDate.of(1969, 8, 11), "Skyler White", 488944, "Lorem Ippularised in the 1960sions of Lorem Ipsum.");
 
+		Person person = new Person(null, "Male", LocalDate.of(1990, 5, 15), "John Doe", 123456789);
 
 
 		Address adr1 = new Address(null, "5th Avenue", "350", ct1, imt, null);
@@ -81,13 +86,18 @@ public class DemoApplication implements CommandLineRunner {
         imV.setImates(Arrays.asList(imt));
         imt.setVisitors(Arrays.asList(imV));
         adr4.setImateVisitor(imV);
+        adr4.setPerson(person);
        
 		imateRepository.saveAll(Arrays.asList(imt, imt2, imt3));
+		
+        personRepository.saveAll(Arrays.asList(person));
+
         addressRepository.saveAll(Arrays.asList(adr1, adr2, adr3, adr4));
         
 
         imateVisitorRepository.saveAll(Arrays.asList(imV));
 
+        
         
        
      
