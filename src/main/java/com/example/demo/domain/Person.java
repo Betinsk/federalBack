@@ -9,6 +9,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,14 +26,14 @@ import jakarta.persistence.OneToMany;
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE )
 	private Integer id;
 	private String gender;
 	private LocalDate dateOfBirth;
 	private String name;
 	private Integer socialSecurity;
 	
-	@OneToMany(mappedBy ="person")
+	@OneToMany(mappedBy ="person") 
 	// @JsonIgnoreProperties("imates")
 	private List<Address> addresses = new ArrayList<>(); 
 	

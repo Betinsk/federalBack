@@ -42,7 +42,7 @@ public class Address implements Serializable {
     private Person person; 
 	
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "imateVisitor_id")
     @JsonIgnoreProperties("addresses") 
     @JsonIgnore // Evita a serialização de imateVisitor dentro de addresses

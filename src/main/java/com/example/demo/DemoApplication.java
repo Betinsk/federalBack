@@ -59,7 +59,7 @@ public class DemoApplication implements CommandLineRunner {
 		City ct2 = new City(null, "Beach" , st2);
 		City ct3 = new City(null, "Miame" , st2);
 
-		st1.getCities().addAll(Arrays.asList(ct1));
+		st1.getCities().addAll(Arrays.asList(ct1)); 
 		st2.getCities().addAll(Arrays.asList(ct2, ct3));
 
 		stateRepository.saveAll(Arrays.asList(st1,st2));
@@ -78,7 +78,7 @@ public class DemoApplication implements CommandLineRunner {
         Address adr3 = new Address(null, "Broadway", "123", ct1, imt, null);
         Address adr4 = new Address(null, "Florida Avenue", "500",ct2, imt3, null);
         
-        ImateVisitors imV= new ImateVisitors(null, "Saul Godman", "34", "Male", 84941984, "992120527");
+        ImateVisitors imV= new ImateVisitors(null, "Male", LocalDate.of(1968, 3, 15), "Saul Godman", 84941984);
 
         imV.setAddresses(Arrays.asList(adr1, adr2));
 
@@ -99,7 +99,7 @@ public class DemoApplication implements CommandLineRunner {
 
         
         
-       
+        
      
 
 	}

@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.DTO.ImateVisitorDto;
+import com.example.demo.domain.Address;
 import com.example.demo.domain.ImateVisitors;
+import com.example.demo.repository.AddressRepository;
 import com.example.demo.repository.ImateRepository;
 import com.example.demo.repository.ImateVisitorRepository;
 import com.example.demo.service.ImateVisitorService;
@@ -34,6 +36,9 @@ public class ImateVisitorResource {
 		
 	@Autowired
 	ImateRepository  imateRepository;
+	
+	@Autowired
+	private AddressRepository addressRepository;
 	
 	@GetMapping
 	public List<ImateVisitors> Listar() {
@@ -81,7 +86,7 @@ public class ImateVisitorResource {
 	
 	  @DeleteMapping("/{id}")
 	    public ResponseEntity<Void> deleteVisitor(@PathVariable Integer id) {
-		  imateVisitorRepository.deleteById(id);
+		  imateVisitorService.deleteVisitor(id);
 	        return ResponseEntity.noContent().build();
 	   
 	  }

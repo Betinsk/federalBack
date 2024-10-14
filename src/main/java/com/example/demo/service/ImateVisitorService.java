@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.DTO.ImateVisitorDto;
 import com.example.demo.domain.Address;
 import com.example.demo.domain.ImateVisitors;
+import com.example.demo.repository.AddressRepository;
 import com.example.demo.repository.ImateVisitorRepository;
 
 import jakarta.transaction.Transactional;
@@ -18,6 +19,10 @@ public class ImateVisitorService {
 
 		@Autowired
 		AddressService addressService;
+		
+
+	    @Autowired
+	    private AddressRepository addressRepository;	
 		
 		@Autowired
 		ImateVisitorRepository imateVisitorRepository;
@@ -42,11 +47,11 @@ public class ImateVisitorService {
 		    // Associar a lista de endereços ao Imate
 		    imateVisitor.setAddresses(addresses);
 			
-		    imateVisitor.setAge(imateVisitorDto.getAge());
+		  //  imateVisitor.setDateOfBirth(imateVisitorDto.getAge());
 		    imateVisitor.setGender(imateVisitorDto.getGender());
 		    imateVisitor.setName(imateVisitorDto.getName());
-		    imateVisitor.setSocialSecure(imateVisitorDto.getSocialSecure());
-		    imateVisitor.setCellfoneNumber(imateVisitorDto.getCellfoneNumber());
+		    imateVisitor.setSocialSecurity(imateVisitorDto.getSocialSecure());
+		//    imateVisitor.setCellfoneNumber(imateVisitorDto.getCellfoneNumber());
 		    imateVisitor.setImates(imateVisitorDto.getImates());
 			
 			address.setImateVisitor(imateVisitor);
@@ -57,6 +62,18 @@ public class ImateVisitorService {
 		    return imateVisitorRepository.save(imateVisitor);
 			
 		}
+	 
+	 
+	 public void deleteVisitor(Integer id) {
+	        // Primeiro, remova os endereços associados
+	        List<Address> addresses = addressRepository.findByImateVisitorId(id);
+	        for (Address address : addresses) {
+	            addressRepository.delete(address);
+	        }
+	        
+	        // Remova o visitante
+	        imateVisitorRepository.deleteById(id);
+	    }
 		
 	}
 	
