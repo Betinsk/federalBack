@@ -1,6 +1,10 @@
 package com.example.demo.DTO;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.demo.domain.Phone;
 
 public class ImateDto {
 	
@@ -10,13 +14,13 @@ public class ImateDto {
 	private Integer socialSecurity;
 	private String commitedCrime;
 	
+	private List<Phone> phones = new ArrayList<>();
+	
 	AddressDto addressDto;
 	
 	ImateDto() {
 		
 	}
-
-	
 
 	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
@@ -71,6 +75,18 @@ public class ImateDto {
 
 	public void setCommitedCrime(String commitedCrime) {
 		this.commitedCrime = commitedCrime;
+	}
+
+
+
+	public List<Phone> getPhones() {
+		return phones;
+	}
+
+
+
+	public void setPhones(List<Phone> phones) {
+		this.phones = phones;
 	}
 	
 	

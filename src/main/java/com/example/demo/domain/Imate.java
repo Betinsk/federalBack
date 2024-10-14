@@ -2,15 +2,21 @@ package com.example.demo.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 
 	@Entity
@@ -18,16 +24,18 @@ import jakarta.persistence.ManyToMany;
 	public class Imate extends Person implements Serializable{
 		private static final long serialVersionUID = 1L;
 		
-		
+	
 	
     @Lob // Para armazenar texto longo, sem limite específico
 	private String commitedCrime;
 
-/*	@OneToMany(mappedBy ="imate")
+	@OneToMany(mappedBy ="imate")
     @JsonIgnoreProperties("imates")
 	private List<Address> addresses = new ArrayList<>(); 
 	
-	*/
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+	 private List<Phone> phones;
+	
     
 	@ManyToMany(mappedBy = "imates")
 	//@JsonBackReference
@@ -38,7 +46,7 @@ import jakarta.persistence.ManyToMany;
 		
 	}
 
-	
+
 	public Imate(Integer id, String gender, LocalDate dateOfBirth, String name, Integer socialSecurity,
 			String commitedCrime) {
 		super(id, gender, dateOfBirth, name, socialSecurity);
@@ -55,6 +63,16 @@ import jakarta.persistence.ManyToMany;
 
 	
 
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
+
+
 	public List<ImateVisitors> getVisitors() {
 		return visitors;
 	}
@@ -64,7 +82,13 @@ import jakarta.persistence.ManyToMany;
 	}
 
 
+	public List<Phone> getPhones() {
+		return phones;
+	}
 
+	public void setPhones(List<Phone> phones) {
+		this.phones = phones;
+	}
 
 	
 	

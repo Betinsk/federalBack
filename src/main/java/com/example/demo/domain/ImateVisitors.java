@@ -5,10 +5,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class ImateVisitors extends Person implements Serializable {
@@ -24,11 +26,10 @@ public class ImateVisitors extends Person implements Serializable {
 		// @JsonManagedReference
 		 private List<Imate> imates = new ArrayList<>();
 		
-	/*	 @OneToMany(mappedBy = "imateVisitor",  cascade = CascadeType.REMOVE, orphanRemoval = true)
+		 @OneToMany(mappedBy = "imateVisitor",  cascade = CascadeType.REMOVE, orphanRemoval = true)
 		 private List<Address> addresses = new ArrayList<>();
 
-		 */
-
+		
 		public ImateVisitors() {
 			 
 		}
@@ -41,6 +42,14 @@ public class ImateVisitors extends Person implements Serializable {
 	
 	}
 
+
+		public List<Address> getAddresses() {
+			return addresses;
+		}
+
+		public void setAddresses(List<Address> addresses) {
+			this.addresses = addresses;
+		}
 
 
 		public List<Imate> getImates() {

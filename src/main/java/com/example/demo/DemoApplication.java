@@ -13,12 +13,14 @@ import com.example.demo.domain.City;
 import com.example.demo.domain.Imate;
 import com.example.demo.domain.ImateVisitors;
 import com.example.demo.domain.Person;
+import com.example.demo.domain.Phone;
 import com.example.demo.domain.State;
 import com.example.demo.repository.AddressRepository;
 import com.example.demo.repository.CityRepository;
 import com.example.demo.repository.ImateRepository;
 import com.example.demo.repository.ImateVisitorRepository;
 import com.example.demo.repository.PersonRepository;
+import com.example.demo.repository.PhoneRepository;
 import com.example.demo.repository.StateRepository;
 
 @SpringBootApplication
@@ -41,6 +43,9 @@ public class DemoApplication implements CommandLineRunner {
 	
 	@Autowired
 	PersonRepository personRepository;
+	
+	@Autowired
+	PhoneRepository phoneRepository;
 	
 	
 	public static void main(String[] args) {
@@ -65,40 +70,43 @@ public class DemoApplication implements CommandLineRunner {
 		stateRepository.saveAll(Arrays.asList(st1,st2));
 		cityRepository.saveAll(Arrays.asList(ct1,ct2, ct3));
 		
-		
 		Imate imt = new Imate(null,"Male", LocalDate.of(1968, 3, 15),  "Whiter White", 45498189, "Drug dealer, murderer, money laundering");
 		Imate imt2 = new Imate(null,"Male", LocalDate.of(2001, 6, 23),  "Saul Godman", 4894894, "Drug dealer, murderer, money laundering");
 		Imate imt3 = new Imate(null, "Fem", LocalDate.of(1969, 8, 11), "Skyler White", 488944, "Lorem Ippularised in the 1960sions of Lorem Ipsum.");
 
-		Person person = new Person(null, "Male", LocalDate.of(1990, 5, 15), "John Doe", 123456789);
 
+		Phone phone1 = new Phone(null, "992120527", null,  imt, null);
+		
+		imt.setPhones(Arrays.asList(phone1));
+		phone1.setImate(imt);
 
 		Address adr1 = new Address(null, "5th Avenue", "350", ct1, imt, null);
         Address adr2 = new Address(null, "Ocean Drive", "1000" , ct2, imt2, null);
         Address adr3 = new Address(null, "Broadway", "123", ct1, imt, null);
         Address adr4 = new Address(null, "Florida Avenue", "500",ct2, imt3, null);
         
+        imt.setAddresses(Arrays.asList(adr1));
+        
         ImateVisitors imV= new ImateVisitors(null, "Male", LocalDate.of(1968, 3, 15), "Saul Godman", 84941984);
-
         imV.setAddresses(Arrays.asList(adr1, adr2));
 
         
         imV.setImates(Arrays.asList(imt));
         imt.setVisitors(Arrays.asList(imV));
         adr4.setImateVisitor(imV);
-        adr4.setPerson(person);
        
+        
 		imateRepository.saveAll(Arrays.asList(imt, imt2, imt3));
 		
-        personRepository.saveAll(Arrays.asList(person));
 
         addressRepository.saveAll(Arrays.asList(adr1, adr2, adr3, adr4));
         
 
         imateVisitorRepository.saveAll(Arrays.asList(imV));
 
-        
-        
+
+		phoneRepository.saveAll(Arrays.asList(phone1));
+
         
      
 

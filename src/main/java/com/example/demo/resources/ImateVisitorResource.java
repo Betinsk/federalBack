@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.DTO.ImateVisitorDto;
-import com.example.demo.domain.Address;
 import com.example.demo.domain.ImateVisitors;
 import com.example.demo.repository.AddressRepository;
 import com.example.demo.repository.ImateRepository;

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import com.example.demo.DTO.ImateDto;
 import com.example.demo.domain.Address;
 import com.example.demo.domain.Imate;
+import com.example.demo.domain.Phone;
 import com.example.demo.repository.ImateRepository;
+import com.example.demo.repository.PhoneRepository;
 import com.example.demo.service.execption.ObjectNotFoundException;
 
 import jakarta.transaction.Transactional;
@@ -23,6 +25,9 @@ public class ImateService {
 	
 	@Autowired
 	private  AddressService addressService; // <-- Estava dando um erro de adressService nulo, porque estava static essa instancia 
+	
+	@Autowired
+	private PhoneRepository phoneRepository;
 	
 	
 	public Imate find(Integer id) {
@@ -41,6 +46,10 @@ public class ImateService {
 		
 		Address address = addressService.createAddress(imateDto.getAddressDto());
 		
+		List<Phone> phone = phoneRepository.saveAll(imateDto.getPhones());
+		
+		
+		
 		System.out.print(imateDto.getAddressDto());
 
 		// Criar uma lista de endereços (mesmo que seja apenas um)
@@ -55,6 +64,7 @@ public class ImateService {
 		imate.setDateOfBirth(imateDto.getDateOfBirth());
 		imate.setGender(imateDto.getGender());
 		imate.setName(imateDto.getName());
+		imate.setPhones(phone);
 		imate.setSocialSecurity(imateDto.getSocialSecurity());
 		imate.setCommitedCrime(imateDto.getCommitedCrime());
 		

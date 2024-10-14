@@ -33,10 +33,13 @@ import jakarta.persistence.OneToMany;
 	private String name;
 	private Integer socialSecurity;
 	
-	@OneToMany(mappedBy ="person") 
+
+/*	@OneToMany(mappedBy ="person") 
 	// @JsonIgnoreProperties("imates")
 	private List<Address> addresses = new ArrayList<>(); 
 	
+	*/
+
 	public Person() {
 		
 	}
@@ -47,7 +50,7 @@ import jakarta.persistence.OneToMany;
 		this.gender = gender;
 		this.dateOfBirth = dateOfBirth;
 		this.name = name;
-		this.socialSecurity = socialSecurity;
+		this.socialSecurity = socialSecurity; 
 	}
 
 	public Integer getId() {
@@ -91,13 +94,6 @@ import jakarta.persistence.OneToMany;
 	}
 	
 
-	public List<Address> getAddresses() {
-		return addresses;
-	}
-
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
-	}
 
 	@Override
 	public int hashCode() {
