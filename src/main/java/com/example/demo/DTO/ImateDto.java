@@ -65,7 +65,7 @@ public class ImateDto {
 
 	@Override
 	public String toString() {
-		return "ImateDto [age=" + dateOfBirth + ", gender=" + gender + ", imateName=" + imateName + ", socialSecurity=" + socialSecurity
+		return "ImateDto [dateOfBirth=" + dateOfBirth + ", gender=" + gender + ", imateName=" + imateName + ", socialSecurity=" + socialSecurity
 				+ ", addressDto=" + addressDto + "]";
 	}
 

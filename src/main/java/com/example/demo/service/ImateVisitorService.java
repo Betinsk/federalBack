@@ -47,7 +47,7 @@ public class ImateVisitorService {
 		    // Associar a lista de endereços ao Imate
 		    imateVisitor.setAddresses(addresses);
 			
-		  //  imateVisitor.setDateOfBirth(imateVisitorDto.getAge());
+		    imateVisitor.setDateOfBirth(imateVisitorDto.getDateOfBirth());
 		    imateVisitor.setGender(imateVisitorDto.getGender());
 		    imateVisitor.setName(imateVisitorDto.getName());
 		    imateVisitor.setSocialSecurity(imateVisitorDto.getSocialSecure());

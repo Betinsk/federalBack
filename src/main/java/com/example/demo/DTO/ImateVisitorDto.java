@@ -1,5 +1,6 @@
 package com.example.demo.DTO;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class ImateVisitorDto {
 	
 	private Integer id;
     private String name;
-    private String age;
+	private LocalDate dateOfBirth;
     private String gender;
     private Integer socialSecure;
     private String cellfoneNumber;
@@ -40,13 +41,6 @@ public class ImateVisitorDto {
 		this.name = name;
 	}
 
-	public String getAge() {
-		return age;
-	}
-
-	public void setAge(String age) {
-		this.age = age;
-	}
 
 	public Integer getSocialSecure() {
 		return socialSecure;
@@ -84,7 +78,7 @@ public class ImateVisitorDto {
 
 	@Override
 	public String toString() {
-		return "ImateVisitorDto [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender
+		return "ImateVisitorDto [id=" + id + ", name=" + name + ", age=" + dateOfBirth + ", gender=" + gender
 				+ ", socialSecure=" + socialSecure + ", cellfoneNumber=" + cellfoneNumber + ", imates=" + imates
 				+ ", addressDto=" + addressDTO + "]";
 	}
@@ -95,6 +89,14 @@ public class ImateVisitorDto {
 
 	public void setImates(List<Imate> imates) {
 		this.imates = imates;
+	}
+
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	

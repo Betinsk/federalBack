@@ -48,13 +48,15 @@ public class ImateService {
 		
 		List<Phone> phone = phoneRepository.saveAll(imateDto.getPhones());
 		
-		
+		System.out.print(imateDto);
+
 		
 		System.out.print(imateDto.getAddressDto());
 
 		// Criar uma lista de endereços (mesmo que seja apenas um)
 	    List<Address> addresses = new ArrayList<>();
 	    addresses.add(address);
+	    
 
 		//System.out.print(address);
 
