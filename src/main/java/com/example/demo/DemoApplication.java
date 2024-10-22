@@ -56,57 +56,79 @@ public class DemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 	
+		// Criando estados
+		State nm = new State(null, "New Mexico");
+		State tx = new State(null, "Texas");
+
+		// Criando cidades
+		City albuquerque = new City(null, "Albuquerque", nm);
+		City elPaso = new City(null, "El Paso", tx);
+
+		// Adicionando cidades aos estados
+		nm.getCities().add(albuquerque);
+		tx.getCities().add(elPaso);
+
+		// Salvando estados e cidades
+		stateRepository.saveAll(Arrays.asList(nm, tx));
+		cityRepository.saveAll(Arrays.asList(albuquerque, elPaso));
+
+		// Criando personagens (Imates)
+		Imate walterWhite = new Imate(null, "Male", LocalDate.of(1958, 9, 7), "Walter White", 123456789, "Former high school chemistry teacher turned meth manufacturer.");
+		Imate jessePinkman = new Imate(null, "Male", LocalDate.of(1984, 9, 24), "Jesse Pinkman", 987654321, "Former student of Walter White and his business partner in meth production.");
+		Imate lydiaRodarte = new Imate(null, "Female", LocalDate.of(1970, 3, 4), "Lydia Rodarte-Quayle", 222333444, "Executiva da empresa que ajudou Gus Fring.");
+		Imate toddAlquist = new Imate(null, "Male", LocalDate.of(1991, 5, 5), "Todd Alquist", 789456123, "Funcionário de Vamonos Pest e associado ao tráfico de drogas.");
+		Imate gusFring = new Imate(null, "Male", LocalDate.of(1958, 4, 6), "Gustavo 'Gus' Fring", 445566778, "Barão das drogas e rival de Walter White.");
+		Imate mikeEhrmantraut = new Imate(null, "Male", LocalDate.of(1940, 6, 5), "Mike Ehrmantraut", 556677889, "Ex-policial e segurança de Gus Fring.");
+		Imate hectorSalamanca = new Imate(null, "Male", LocalDate.of(1928, 1, 1), "Hector Salamanca", 999888777, "Membro da família Salamanca.");
+
+		// Criando personagens visitantes (ImateVisitors)
+		ImateVisitors hollyWhite = new ImateVisitors(null, "Female", LocalDate.of(2006, 2, 11), "Holly White", 123321123);
+		ImateVisitors marieSchrader = new ImateVisitors(null, "Female", LocalDate.of(1974, 2, 11), "Marie Schrader", 987123456);
+		ImateVisitors stevenGomez = new ImateVisitors(null, "Male", LocalDate.of(1980, 11, 3), "Steven Gomez", 654321987);
+		ImateVisitors janeMargolis = new ImateVisitors(null, "Female", LocalDate.of(1982, 5, 15), "Jane Margolis", 321654987);
+		ImateVisitors badger = new ImateVisitors(null, "Male", LocalDate.of(1985, 2, 20), "Badger", 654789123);
+		ImateVisitors skinnyPete = new ImateVisitors(null, "Male", LocalDate.of(1983, 8, 17), "Skinny Pete", 789123654);
+		ImateVisitors skylerWhite = new ImateVisitors(null, "Female", LocalDate.of(1970, 8, 11), "Skyler White", 223344556);
+		ImateVisitors saulGoodman = new ImateVisitors(null, "Male", LocalDate.of(1961, 11, 12), "Saul Goodman", 111223344);
+
+		//Imate hankSchrader = new Imate(null, "Male", LocalDate.of(1966, 3, 12), "Hank Schrader", 334455667, "Agente da DEA e cunhado de Walter White.");
+
+		// Endereços dos personagens
+		Address walterAddress = new Address(null, "308 Negra Arroyo Lane", "1", albuquerque, walterWhite, null);
+		Address jesseAddress = new Address(null, "9809 Margo Street", "2", albuquerque, jessePinkman, null);
+	//	Address hankAddress = new Address(null, "5000 Voss St", "3", albuquerque, hankSchrader, null);
+		Address gusAddress = new Address(null, "1044 Mountain Rd", "4", albuquerque, gusFring, null);
+		Address mikeAddress = new Address(null, "1200 W San Mateo Rd", "5", albuquerque, mikeEhrmantraut, null);
+		Address saulAddress = new Address(null, "9800 Montgomery Blvd NE", "6", albuquerque, null, saulGoodman);
+		Address skylerAddress = new Address(null, "308 Negra Arroyo Lane", "1", albuquerque, null, skylerWhite);
+		Address janeAddress = new Address(null, "1234 Elm St", "2", albuquerque, jessePinkman, null);
+		Address marieAddress = new Address(null, "5003 W 6th St", "3", albuquerque, walterWhite, null);
+
+		// Associando endereços aos personagens
+		walterWhite.setAddresses(Arrays.asList(walterAddress));
+		walterWhite.setVisitors(Arrays.asList(saulGoodman,skylerWhite )); 
+		saulGoodman.setImates(Arrays.asList(walterWhite));
+		skylerWhite.setImates(Arrays.asList(walterWhite));
 		
-		State st1 = new State(null, "NEY MEXICO");
-		State st2 = new State(null, "Florida");
+		jessePinkman.setAddresses(Arrays.asList(jesseAddress));
+		//hankSchrader.setAddresses(Arrays.asList(hankAddress));
+		gusFring.setAddresses(Arrays.asList(gusAddress));
+		mikeEhrmantraut.setAddresses(Arrays.asList(mikeAddress));
+		saulGoodman.setAddresses(Arrays.asList(saulAddress));
+		skylerWhite.setAddresses(Arrays.asList(skylerAddress));
+		janeMargolis.setAddresses(Arrays.asList(janeAddress));
+		marieSchrader.setAddresses(Arrays.asList(marieAddress));
+
+		// Salvando personagens e endereços
+		imateRepository.saveAll(Arrays.asList(walterWhite, jessePinkman, gusFring, mikeEhrmantraut, lydiaRodarte, toddAlquist, hectorSalamanca));
+		addressRepository.saveAll(Arrays.asList(walterAddress, jesseAddress , gusAddress, mikeAddress, saulAddress, skylerAddress, janeAddress, marieAddress));
+		imateVisitorRepository.saveAll(Arrays.asList(skylerWhite, hollyWhite, marieSchrader, saulGoodman, stevenGomez, janeMargolis, badger, skinnyPete));
+
 		
-		City ct1 = new City(null, "ALBUQUERQUE" , st1);
-		City ct2 = new City(null, "Beach" , st2);
-		City ct3 = new City(null, "Miame" , st2);
-
-		st1.getCities().addAll(Arrays.asList(ct1)); 
-		st2.getCities().addAll(Arrays.asList(ct2, ct3));
-
-		stateRepository.saveAll(Arrays.asList(st1,st2));
-		cityRepository.saveAll(Arrays.asList(ct1,ct2, ct3));
-		
-		Imate imt = new Imate(null,"Male", LocalDate.of(1968, 3, 15),  "Whiter White", 45498189, "Drug dealer, murderer, money laundering");
-		Imate imt2 = new Imate(null,"Male", LocalDate.of(2001, 6, 23),  "Saul Godman", 4894894, "Drug dealer, murderer, money laundering");
-		Imate imt3 = new Imate(null, "Fem", LocalDate.of(1969, 8, 11), "Skyler White", 488944, "Lorem Ippularised in the 1960sions of Lorem Ipsum.");
-
-
-		Phone phone1 = new Phone(null, "992120527", null,  imt, null);
-		
-		imt.setPhones(Arrays.asList(phone1));
-		phone1.setImate(imt);
-
-		Address adr1 = new Address(null, "5th Avenue", "350", ct1, imt, null);
-        Address adr2 = new Address(null, "Ocean Drive", "1000" , ct2, imt2, null);
-        Address adr3 = new Address(null, "Broadway", "123", ct1, imt, null);
-        Address adr4 = new Address(null, "Florida Avenue", "500",ct2, imt3, null);
-        
-        imt.setAddresses(Arrays.asList(adr1));
-        
-        ImateVisitors imV= new ImateVisitors(null, "Male", LocalDate.of(1968, 3, 15), "Saul Godman", 84941984);
-        imV.setAddresses(Arrays.asList(adr1, adr2));
-
-        
-        imV.setImates(Arrays.asList(imt));
-        imt.setVisitors(Arrays.asList(imV));
-        adr4.setImateVisitor(imV);
-       
-        
-		imateRepository.saveAll(Arrays.asList(imt, imt2, imt3));
 		
 
-        addressRepository.saveAll(Arrays.asList(adr1, adr2, adr3, adr4));
-        
 
-        imateVisitorRepository.saveAll(Arrays.asList(imV));
-
-
-		phoneRepository.saveAll(Arrays.asList(phone1));
-
+     
         
      
 

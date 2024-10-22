@@ -24,16 +24,15 @@ import jakarta.persistence.OneToMany;
 	public class Imate extends Person implements Serializable{
 		private static final long serialVersionUID = 1L;
 		
-	
-	
     @Lob // Para armazenar texto longo, sem limite específico
 	private String commitedCrime;
 
 	@OneToMany(mappedBy ="imate")
     @JsonIgnoreProperties("imates")
 	private List<Address> addresses = new ArrayList<>(); 
+
 	
-	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "imate", cascade = CascadeType.ALL)
 	 private List<Phone> phones;
 	
     
@@ -46,12 +45,15 @@ import jakarta.persistence.OneToMany;
 		
 	}
 
-
+	
 	public Imate(Integer id, String gender, LocalDate dateOfBirth, String name, Integer socialSecurity,
 			String commitedCrime) {
 		super(id, gender, dateOfBirth, name, socialSecurity);
 		this.commitedCrime = commitedCrime;
+	
 	}
+
+
 
 	public String getCommitedCrime() {
 		return commitedCrime;

@@ -66,7 +66,7 @@ public class ImateDto {
 	@Override
 	public String toString() {
 		return "ImateDto [dateOfBirth=" + dateOfBirth + ", gender=" + gender + ", imateName=" + imateName + ", socialSecurity=" + socialSecurity
-				+ ", addressDto=" + addressDto + "]";
+				+ ", addressDto=" + addressDto + "]" + "Phones " + phones;
 	}
 
 	public String getCommitedCrime() {

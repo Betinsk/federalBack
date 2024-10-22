@@ -29,7 +29,12 @@ public class ImateVisitors extends Person implements Serializable {
 		 @OneToMany(mappedBy = "imateVisitor",  cascade = CascadeType.REMOVE, orphanRemoval = true)
 		 private List<Address> addresses = new ArrayList<>();
 
+		 
+		 @OneToMany(mappedBy = "imateVisitor", cascade = CascadeType.ALL)
+		 private List<Phone> phones;
 		
+
+
 		public ImateVisitors() {
 			 
 		}
@@ -63,7 +68,15 @@ public class ImateVisitors extends Person implements Serializable {
 		}
 
 
+		public List<Phone> getPhones() {
+			return phones;
+		}
 
-	
+
+
+		public void setPhones(List<Phone> phones) {
+			this.phones = phones;
+		}
+
 	
 }

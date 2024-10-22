@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.domain.Imate;
+import com.example.demo.domain.Phone;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class ImateVisitorDto {
@@ -13,17 +14,29 @@ public class ImateVisitorDto {
     private String name;
 	private LocalDate dateOfBirth;
     private String gender;
-    private Integer socialSecure;
-    private String cellfoneNumber;
+    private Integer socialSecurity;
 
     private List<Imate> imates = new ArrayList<>();
     
     @JsonIgnoreProperties("cities") 
 	AddressDto addressDTO;
+    
+	private List<Phone> phones = new ArrayList<>();
+
+	
+	public List<Phone> getPhones() {
+		return phones;
+	}
 	
 	public ImateVisitorDto() {
-		
+			
+		}
+
+	public void setPhones(List<Phone> phones) {
+		this.phones = phones;
 	}
+
+	
 
 	public Integer getId() {
 		return id;
@@ -42,21 +55,15 @@ public class ImateVisitorDto {
 	}
 
 
-	public Integer getSocialSecure() {
-		return socialSecure;
+	public Integer getSocialSecurity() {
+		return socialSecurity;
 	}
 
-	public void setSocialSecure(Integer socialSecure) {
-		this.socialSecure = socialSecure;
+	public void setSocialSecurity(Integer socialSecurity) {
+		this.socialSecurity = socialSecurity;
 	}
 
-	public String getCellfoneNumber() {
-		return cellfoneNumber;
-	}
-
-	public void setCellfoneNumber(String cellfoneNumber) {
-		this.cellfoneNumber = cellfoneNumber;
-	}
+	
 
 	public AddressDto getAddressDto() {
 		return addressDTO;
@@ -79,7 +86,7 @@ public class ImateVisitorDto {
 	@Override
 	public String toString() {
 		return "ImateVisitorDto [id=" + id + ", name=" + name + ", age=" + dateOfBirth + ", gender=" + gender
-				+ ", socialSecure=" + socialSecure + ", cellfoneNumber=" + cellfoneNumber + ", imates=" + imates
+				+ ", socialSecurity=" + socialSecurity + ", cellfoneNumber=" + phones + ", imates=" + imates
 				+ ", addressDto=" + addressDTO + "]";
 	}
 

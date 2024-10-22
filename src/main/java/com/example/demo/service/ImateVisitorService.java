@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import com.example.demo.DTO.ImateVisitorDto;
 import com.example.demo.domain.Address;
 import com.example.demo.domain.ImateVisitors;
+import com.example.demo.domain.Phone;
 import com.example.demo.repository.AddressRepository;
 import com.example.demo.repository.ImateVisitorRepository;
+import com.example.demo.repository.PhoneRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -26,6 +28,9 @@ public class ImateVisitorService {
 		
 		@Autowired
 		ImateVisitorRepository imateVisitorRepository;
+		
+		@Autowired
+		PhoneRepository phoneRepository;
 	
 	 @Transactional
 		public ImateVisitors createVistor(ImateVisitorDto imateVisitorDto) {
@@ -42,7 +47,13 @@ public class ImateVisitorService {
 		    List<Address> addresses = new ArrayList<>();
 		    addresses.add(address);
 
-			//System.out.print(address);
+			List<Phone> phones = imateVisitorDto.getPhones();
+		    phones.forEach(phone -> phone.setImateVisitor(imateVisitor));
+
+
+			 // Salvar a lista de telefones e associá-la ao Imate
+			     phoneRepository.saveAll(phones);
+			     imateVisitor.setPhones(phones);
 
 		    // Associar a lista de endereços ao Imate
 		    imateVisitor.setAddresses(addresses);
@@ -50,8 +61,7 @@ public class ImateVisitorService {
 		    imateVisitor.setDateOfBirth(imateVisitorDto.getDateOfBirth());
 		    imateVisitor.setGender(imateVisitorDto.getGender());
 		    imateVisitor.setName(imateVisitorDto.getName());
-		    imateVisitor.setSocialSecurity(imateVisitorDto.getSocialSecure());
-		//    imateVisitor.setCellfoneNumber(imateVisitorDto.getCellfoneNumber());
+		    imateVisitor.setSocialSecurity(imateVisitorDto.getSocialSecurity());
 		    imateVisitor.setImates(imateVisitorDto.getImates());
 			
 			address.setImateVisitor(imateVisitor);

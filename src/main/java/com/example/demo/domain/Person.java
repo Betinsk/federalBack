@@ -2,38 +2,37 @@ package com.example.demo.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 
 
 	@Entity
+	
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 	public class Person implements Serializable{
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; 
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE )
+	@SequenceGenerator(name = "sequence_generator", sequenceName = "person_sequence", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_generator")
 	private Integer id;
 	private String gender;
 	private LocalDate dateOfBirth;
 	private String name;
 	private Integer socialSecurity;
-	
-
+	 
+ 
 /*	@OneToMany(mappedBy ="person") 
 	// @JsonIgnoreProperties("imates")
 	private List<Address> addresses = new ArrayList<>(); 
@@ -50,7 +49,7 @@ import jakarta.persistence.OneToMany;
 		this.gender = gender;
 		this.dateOfBirth = dateOfBirth;
 		this.name = name;
-		this.socialSecurity = socialSecurity; 
+		this.socialSecurity = socialSecurity;
 	}
 
 	public Integer getId() {

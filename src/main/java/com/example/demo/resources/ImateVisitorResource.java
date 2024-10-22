@@ -59,7 +59,7 @@ public class ImateVisitorResource {
 
 	    try {
 	        ImateVisitors imateVisitor = imateVisitorService.createVistor(imateVisitorDto);
-	        response.put("message", "Imate criado com sucesso!");
+	        response.put("message", "Visitor criado com sucesso!");
 	        response.put("imateVisitor", imateVisitor); // Você pode retornar o objeto criado, se necessário
 	        return ResponseEntity.ok(response);
 	    } catch (Exception e) {

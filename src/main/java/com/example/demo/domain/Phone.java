@@ -1,5 +1,7 @@
 package com.example.demo.domain;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,7 +10,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Phone {
+public class Phone implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,20 +48,14 @@ public class Phone {
 	}
 
 
-
-
-
-
 	public Imate getImate() {
 		return imate;
 	}
 
 
-
 	public void setImate(Imate imate) {
 		this.imate = imate;
 	}
-
 
 
 	public ImateVisitors getImateVisitor() {
@@ -83,6 +81,7 @@ public class Phone {
     public String getNumber() {
         return number;
     }
+    
 
     public void setNumber(String number) {
         this.number = number;

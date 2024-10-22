@@ -55,6 +55,12 @@ public class ImateResource {
 			return ResponseEntity.ok().body(optionalImate);
 	    }
 		
+	    @GetMapping("/ssn/{socialSecurity}")
+	    public ResponseEntity<Imate> findBySocialSecurity(@PathVariable Integer socialSecurity) {
+	        Imate optionalImate = imateService.findBySocialSecurity(socialSecurity);
+			return ResponseEntity.ok().body(optionalImate);
+	    }
+		
 		@PostMapping
 		public ResponseEntity<Map<String, Object>> createImate(@RequestBody ImateDto imateDto) {
 		    Map<String, Object> response = new HashMap<>();
