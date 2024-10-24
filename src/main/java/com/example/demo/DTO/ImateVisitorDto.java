@@ -19,19 +19,19 @@ public class ImateVisitorDto {
     private List<Imate> imates = new ArrayList<>();
     
     @JsonIgnoreProperties("cities") 
-	AddressDto addressDTO;
+    private List<AddressDto> addressDto = new ArrayList<>(); // Certifique-se de que isso seja uma lista se você estiver enviando um array
     
 	private List<Phone> phones = new ArrayList<>();
 
-	
+	public ImateVisitorDto() {
+		
+	}
+
 	public List<Phone> getPhones() {
 		return phones;
 	}
 	
-	public ImateVisitorDto() {
-			
-		}
-
+	
 	public void setPhones(List<Phone> phones) {
 		this.phones = phones;
 	}
@@ -63,16 +63,6 @@ public class ImateVisitorDto {
 		this.socialSecurity = socialSecurity;
 	}
 
-	
-
-	public AddressDto getAddressDto() {
-		return addressDTO;
-	}
-
-	public void setAddressDto(AddressDto addressDto) {
-		this.addressDTO = addressDto;
-	}
-
 	public String getGender() {
 		return gender;
 	}
@@ -81,13 +71,21 @@ public class ImateVisitorDto {
 		this.gender = gender;
 	}
 
+	
 
+	public List<AddressDto> getAddressDto() {
+		return addressDto;
+	}
+
+	public void setAddressDto(List<AddressDto> addressDto) {
+		this.addressDto = addressDto;
+	}
 
 	@Override
 	public String toString() {
 		return "ImateVisitorDto [id=" + id + ", name=" + name + ", age=" + dateOfBirth + ", gender=" + gender
 				+ ", socialSecurity=" + socialSecurity + ", cellfoneNumber=" + phones + ", imates=" + imates
-				+ ", addressDto=" + addressDTO + "]";
+				+ ", addressDto=" + addressDto + "]";
 	}
 
 	public List<Imate> getImates() {

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.DTO.AddressDto;
 import com.example.demo.DTO.ImateVisitorDto;
 import com.example.demo.domain.Address;
 import com.example.demo.domain.ImateVisitors;
@@ -32,20 +33,28 @@ public class ImateVisitorService {
 		@Autowired
 		PhoneRepository phoneRepository;
 	
-	 @Transactional
+		@Transactional
 		public ImateVisitors createVistor(ImateVisitorDto imateVisitorDto) {
 			
-			System.out.print(imateVisitorDto);
-
 		 	ImateVisitors imateVisitor = new ImateVisitors();
-			
-			Address address = addressService.createAddress(imateVisitorDto.getAddressDto());
+		 	
+		 	 // Percorrer a lista de endereços
+		    List<AddressDto> addressList = imateVisitorDto.getAddressDto(); // Obter a lista de endereços
+	        List<Address> addresses = new ArrayList<>();
+
+		    for (AddressDto addressDto : addressList) {
+		        // Criar o objeto Address a partir do AddressDto
+		        Address address = addressService.createAddress(addressDto);
+				address.setImateVisitor(imateVisitor);
+			    addresses.add(address);
+
+		        }
+			//Address address = addressService.createAddress(imateVisitorDto.getAddressDTO());
 			
 			System.out.print(imateVisitorDto.getAddressDto());
 
 			// Criar uma lista de endereços (mesmo que seja apenas um)
-		    List<Address> addresses = new ArrayList<>();
-		    addresses.add(address);
+		   
 
 			List<Phone> phones = imateVisitorDto.getPhones();
 		    phones.forEach(phone -> phone.setImateVisitor(imateVisitor));
@@ -64,7 +73,6 @@ public class ImateVisitorService {
 		    imateVisitor.setSocialSecurity(imateVisitorDto.getSocialSecurity());
 		    imateVisitor.setImates(imateVisitorDto.getImates());
 			
-			address.setImateVisitor(imateVisitor);
 			
 		//	System.out.print(imate);
 
