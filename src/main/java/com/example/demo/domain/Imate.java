@@ -42,18 +42,15 @@ import jakarta.persistence.OneToMany;
 	
 
 	public Imate() {
-		
 	}
 
-	
+
 	public Imate(Integer id, String gender, LocalDate dateOfBirth, String name, Integer socialSecurity,
 			String commitedCrime) {
 		super(id, gender, dateOfBirth, name, socialSecurity);
 		this.commitedCrime = commitedCrime;
 	
 	}
-
-
 
 	public String getCommitedCrime() {
 		return commitedCrime;
@@ -64,7 +61,6 @@ import jakarta.persistence.OneToMany;
 	}
 
 	
-
 	public List<Address> getAddresses() {
 		return addresses;
 	}

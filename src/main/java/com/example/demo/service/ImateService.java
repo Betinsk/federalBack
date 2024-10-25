@@ -11,7 +11,6 @@ import com.example.demo.DTO.ImateDto;
 import com.example.demo.domain.Address;
 import com.example.demo.domain.Imate;
 import com.example.demo.domain.Phone;
-import com.example.demo.domain.State;
 import com.example.demo.repository.ImateRepository;
 import com.example.demo.repository.PhoneRepository;
 import com.example.demo.service.execption.ObjectNotFoundException;
@@ -43,7 +42,6 @@ public class ImateService {
 		
 	}
 	
-
 
     @Transactional
 	public Imate createImate(ImateDto imateDto) {
@@ -96,5 +94,27 @@ public class ImateService {
 		
 	}
 	
+    public Imate updateInmate(Integer id, ImateDto imateDto) {
+        // Busque o preso pelo ID
+        Imate imate = imateRepository.findById(id)
+            .orElseThrow(() -> new ObjectNotFoundException("Preso não encontrado com o ID: " + id));
+
+        // Atualize os dados principais do preso
+        updateMainDetails(imate, imateDto);
+
+        // Salve as mudanças
+        return imateRepository.save(imate);
+    }
+
+  
+	private void updateMainDetails(Imate imate, ImateDto imateDto) {
+        imate.setName(imateDto.getName());
+        imate.setGender(imateDto.getGender());
+        imate.setDateOfBirth(imateDto.getDateOfBirth());
+        imate.setSocialSecurity(imateDto.getSocialSecurity());
+        imate.setCommitedCrime(imateDto.getCommitedCrime());
+    }
+
+
 	
 }

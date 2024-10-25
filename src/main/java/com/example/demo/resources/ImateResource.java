@@ -78,14 +78,10 @@ public class ImateResource {
 		}
 
 		
-		 @PutMapping("/{id}")
-		    public ResponseEntity<Imate> updateImate(@PathVariable Integer id, @RequestBody Imate updatedImate) {
-		        try {
-		            Imate updated = imateRepository.save(updatedImate);
-		            return ResponseEntity.ok(updated);
-		        } catch (IllegalArgumentException e) {
-		            return ResponseEntity.notFound().build();
-		        }
+		  @PutMapping("/{id}")
+		    public ResponseEntity<Imate> updateInmate(@PathVariable Integer id, @RequestBody ImateDto inmateDto) {
+		        Imate updatedImate = imateService.updateInmate(id, inmateDto);
+		        return ResponseEntity.ok(updatedImate);
 		    }
 		
 		  @DeleteMapping("/{id}")

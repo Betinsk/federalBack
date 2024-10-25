@@ -55,7 +55,7 @@ public class DemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-	
+		if (stateRepository.count() == 0) {
 		// Criando estados
 		State nm = new State(null, "New Mexico");
 		State tx = new State(null, "Texas");
@@ -126,7 +126,7 @@ public class DemoApplication implements CommandLineRunner {
 
 		
 		
-
+		}
 
      
         
