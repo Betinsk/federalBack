@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.domain.Phone;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class ImateDto {
 	
@@ -16,7 +17,8 @@ public class ImateDto {
 	
 	private List<Phone> phones = new ArrayList<>();
 	
-	AddressDto addressDto;
+	 @JsonIgnoreProperties("cities") 
+	    private List<AddressDto> addressDto = new ArrayList<>(); // Certifique-se de que isso seja uma lista se você estiver enviando um array
 	
 	ImateDto() {
 		
@@ -55,11 +57,22 @@ public class ImateDto {
 		this.socialSecurity = socialSecurity;
 	}
 
-	public AddressDto getAddressDto() {
+	
+	
+
+	public String getImateName() {
+		return imateName;
+	}
+
+	public void setImateName(String imateName) {
+		this.imateName = imateName;
+	}
+
+	public List<AddressDto> getAddressDto() {
 		return addressDto;
 	}
 
-	public void setAddressDto(AddressDto addressDto) {
+	public void setAddressDto(List<AddressDto> addressDto) {
 		this.addressDto = addressDto;
 	}
 

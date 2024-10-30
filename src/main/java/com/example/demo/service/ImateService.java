@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.DTO.AddressDto;
 import com.example.demo.DTO.ImateDto;
 import com.example.demo.domain.Address;
 import com.example.demo.domain.Imate;
@@ -57,8 +58,20 @@ public class ImateService {
         // Criar uma nova instância de Imate
 		Imate imate = new Imate();
 		
-		// Criar endereço a partir do DTO e associá-lo ao Imate
-		Address address = addressService.createAddress(imateDto.getAddressDto());
+		imateRepository.save(imate);
+
+		
+		 // Percorrer a lista de endereços
+	    List<AddressDto> addressList = imateDto.getAddressDto(); // Obter a lista de endereços
+        List<Address> addresses = new ArrayList<>();
+
+	    for (AddressDto addressDto : addressList) {
+	        // Criar o objeto Address a partir do AddressDto
+	        Address address = addressService.createAddress(addressDto);
+			address.setImate(imate);
+		    addresses.add(address);
+
+	        }
 		
 		// Salvar os telefones e associá-los ao Imate
 	    List<Phone> phones = imateDto.getPhones();
@@ -66,8 +79,6 @@ public class ImateService {
 	    phones.forEach(phone -> phone.setImate(imate));
 	    
 		// Criar uma lista de endereços (mesmo que seja apenas um)
-	    List<Address> addresses = new ArrayList<>();
-	    addresses.add(address);
 
 	 // Salvar a lista de telefones e associá-la ao Imate
 	     phoneRepository.saveAll(phones);
@@ -77,7 +88,7 @@ public class ImateService {
 
 	    // Associar a lista de endereços ao Imate
 	    imate.setAddresses(addresses);
-		
+		 
 		imate.setDateOfBirth(imateDto.getDateOfBirth());
 		imate.setGender(imateDto.getGender());
 		imate.setName(imateDto.getName());
@@ -85,9 +96,7 @@ public class ImateService {
 		imate.setSocialSecurity(imateDto.getSocialSecurity());
 		imate.setCommitedCrime(imateDto.getCommitedCrime());
 		
-		address.setImate(imate);
 		
-	//	System.out.print(imate);
 
 	    // Salvar o Imate (exemplo de como salvar, depende da sua lógica)
 	    return imateRepository.save(imate);
