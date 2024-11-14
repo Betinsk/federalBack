@@ -19,6 +19,7 @@ import com.example.demo.enums.SecurityLevel;
 public class PrisionInstitutionResource {
 
 	@GetMapping
+	
 	public  List<PrisionalInstitution> listar() {
         List<PrisionalInstitution> prisions = new ArrayList<>();
 
