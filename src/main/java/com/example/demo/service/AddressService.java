@@ -64,6 +64,7 @@ public class AddressService {
 	
 	 public Address updateAddress(Integer id, AddressDto addressDTO) {
 		    // Busca o endereço pelo ID
+		 	System.out.println("Id e Add"+ id+ addressDTO);
 		    Address address = addressRepository.findById(id)
 		        .orElseThrow(() -> new RuntimeException("Endereço não encontrado"));
 
