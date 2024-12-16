@@ -1,7 +1,9 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.example.demo.enums.SecurityLevel;
 
@@ -9,6 +11,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class PrisionalInstitution implements Serializable {
@@ -28,7 +33,15 @@ public class PrisionalInstitution implements Serializable {
 	private Integer currentPopulation;
 	private Integer capacity;
 	private String description;
-	private Address address;
+	
+	 	@OneToOne
+	    @JoinColumn(name = "address_id")
+	    private Address address;
+	
+    @OneToMany(mappedBy = "prison")
+	private List<Imate> imates = new ArrayList<>();	
+    
+    
 	
 	public PrisionalInstitution() {
 		

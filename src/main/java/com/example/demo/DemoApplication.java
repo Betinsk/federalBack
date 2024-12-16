@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,15 +13,16 @@ import com.example.demo.domain.Address;
 import com.example.demo.domain.City;
 import com.example.demo.domain.Imate;
 import com.example.demo.domain.ImateVisitors;
-import com.example.demo.domain.Person;
-import com.example.demo.domain.Phone;
+import com.example.demo.domain.PrisionalInstitution;
 import com.example.demo.domain.State;
+import com.example.demo.enums.SecurityLevel;
 import com.example.demo.repository.AddressRepository;
 import com.example.demo.repository.CityRepository;
 import com.example.demo.repository.ImateRepository;
 import com.example.demo.repository.ImateVisitorRepository;
 import com.example.demo.repository.PersonRepository;
 import com.example.demo.repository.PhoneRepository;
+import com.example.demo.repository.PrisonInstitutionRepository;
 import com.example.demo.repository.StateRepository;
 
 @SpringBootApplication
@@ -47,6 +49,8 @@ public class DemoApplication implements CommandLineRunner {
 	@Autowired
 	PhoneRepository phoneRepository;
 	
+	@Autowired
+	PrisonInstitutionRepository prisonInstitutionRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -64,13 +68,23 @@ public class DemoApplication implements CommandLineRunner {
 		City albuquerque = new City(null, "Albuquerque", nm);
 		City elPaso = new City(null, "El Paso", tx);
 
+		
+
+        City city1 = new City(null, "San Francisco", nm);
+        City city2 = new City(null, "San Quentin",tx);
+        City city3 = new City(null, "Folsom", nm);
+        
+		cityRepository.saveAll(Arrays.asList());
+		
 		// Adicionando cidades aos estados
-		nm.getCities().add(albuquerque);
+		nm.getCities().addAll(Arrays.asList(albuquerque, city1, city2, city3));
 		tx.getCities().add(elPaso);
 
+		
+		
 		// Salvando estados e cidades
 		stateRepository.saveAll(Arrays.asList(nm, tx));
-		cityRepository.saveAll(Arrays.asList(albuquerque, elPaso));
+		cityRepository.saveAll(Arrays.asList(albuquerque, elPaso, city1, city2, city3));
 
 		// Criando personagens (Imates)
 		Imate walterWhite = new Imate(null, "Male", LocalDate.of(1958, 9, 7), "Walter White", 123456789, "Former high school chemistry teacher turned meth manufacturer.");
@@ -118,6 +132,13 @@ public class DemoApplication implements CommandLineRunner {
 		skylerWhite.setAddresses(Arrays.asList(skylerAddress));
 		janeMargolis.setAddresses(Arrays.asList(janeAddress));
 		marieSchrader.setAddresses(Arrays.asList(marieAddress));
+		
+		   // Criando os endereços associados às cidades
+        Address address1 = new Address(null, "123 Island Rd", "1", city1, null, null);
+        Address address2 = new Address(null,"San Quentin Rd", "2", city2, null, null);
+        Address address3 = new Address(null,"300 Prison Rd", "3", city3, null, null);
+        
+        addressRepository.saveAll(Arrays.asList(address1, address2, address3));
 
 		// Salvando personagens e endereços
 		imateRepository.saveAll(Arrays.asList(walterWhite, jessePinkman, gusFring, mikeEhrmantraut, lydiaRodarte, toddAlquist, hectorSalamanca));
@@ -125,7 +146,15 @@ public class DemoApplication implements CommandLineRunner {
 		imateVisitorRepository.saveAll(Arrays.asList(skylerWhite, hollyWhite, marieSchrader, saulGoodman, stevenGomez, janeMargolis, badger, skinnyPete));
 
 		
+        // Instanciando as prisões
+		 PrisionalInstitution p1 = new PrisionalInstitution("Alcatraz", SecurityLevel.HIGH, new Date(1940, 1, 1), 100, 200, "Famous high-security prison.", address1);
+		 PrisionalInstitution p2 =  new PrisionalInstitution("San Quentin", SecurityLevel.MEDIUM, new Date(1852, 7, 1), 1500, 3000, "California state prison for men.", address2);
+		PrisionalInstitution p3 =  new PrisionalInstitution("Folsom", SecurityLevel.HIGH, new Date(1880, 1, 1), 1200, 2500, "Prison located in California, famous for Johnny Cash's performance.", address3);
+		 prisonInstitutionRepository.saveAll(Arrays.asList( p1, p2, p3));
 		
+     
+        
+
 		}
 
      

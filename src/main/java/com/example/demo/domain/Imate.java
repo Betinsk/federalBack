@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 
@@ -40,7 +39,11 @@ import jakarta.persistence.OneToMany;
 	//@JsonBackReference
     private List<ImateVisitors> visitors;
 	
+	@ManyToOne
+    @JoinColumn(name = "prison_id")
+    private PrisionalInstitution prison;
 
+	
 	public Imate() {
 	}
 
@@ -86,6 +89,16 @@ import jakarta.persistence.OneToMany;
 
 	public void setPhones(List<Phone> phones) {
 		this.phones = phones;
+	}
+
+
+	public PrisionalInstitution getPrison() {
+		return prison;
+	}
+
+
+	public void setPrison(PrisionalInstitution prison) {
+		this.prison = prison;
 	}
 
 	

@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Address implements Serializable {
@@ -48,6 +49,8 @@ public class Address implements Serializable {
     @JsonIgnore // Evita a serialização de imateVisitor dentro de addresses
     private ImateVisitors imateVisitor;
      
+	@OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
+    private PrisionalInstitution prison;
      
     public Address() {
     }
