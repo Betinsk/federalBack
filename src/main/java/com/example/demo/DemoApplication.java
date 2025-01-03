@@ -123,7 +123,7 @@ public class DemoApplication implements CommandLineRunner {
 		walterWhite.setVisitors(Arrays.asList(saulGoodman,skylerWhite )); 
 		saulGoodman.setImates(Arrays.asList(walterWhite));
 		skylerWhite.setImates(Arrays.asList(walterWhite));
-		
+
 		jessePinkman.setAddresses(Arrays.asList(jesseAddress));
 		//hankSchrader.setAddresses(Arrays.asList(hankAddress));
 		gusFring.setAddresses(Arrays.asList(gusAddress));

@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.DTO.ImateDto;
 import com.example.demo.domain.Imate;
@@ -31,7 +33,7 @@ public class ImateResource {
 	@Autowired
 	 ImateRepository imateRepository;
 
-
+	
 	@GetMapping
 	public ResponseEntity<List<Imate>> listar() {
 	    try {
@@ -91,6 +93,17 @@ public class ImateResource {
 		   
 		  }
 		  
+			//TEST DA IMAGEM NO BUCKET
+			@PostMapping("/upload")
+			public ResponseEntity<String> uploadFile(@RequestParam("image") MultipartFile file) {
+			    String fileUrl = imateService.uploadImg(file);
+			    if (fileUrl != null) {
+			        return ResponseEntity.ok("Arquivo enviado com sucesso: " + fileUrl);
+			    } else {
+			        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao enviar arquivo.");
+			    }
+			}
+
 
 }
 

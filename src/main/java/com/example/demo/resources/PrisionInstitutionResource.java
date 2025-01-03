@@ -11,7 +11,7 @@ import com.example.demo.domain.PrisionalInstitution;
 import com.example.demo.repository.PrisonInstitutionRepository;
 
 @RestController
-@RequestMapping(value="/prisions")
+@RequestMapping(value="/prisons")
 public class PrisionInstitutionResource {
 
 	@Autowired
