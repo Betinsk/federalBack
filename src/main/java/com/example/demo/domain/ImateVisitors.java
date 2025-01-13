@@ -41,9 +41,9 @@ public class ImateVisitors extends Person implements Serializable {
 		
 		
 		
-		public ImateVisitors(Integer id, String gender, LocalDate dateOfBirth, String name, Integer socialSecurity
+		public ImateVisitors(Integer id, String gender, LocalDate dateOfBirth, String name, Integer socialSecurity, String profileImage
 			) {
-		super(id, gender, dateOfBirth, name, socialSecurity);
+		super(id, gender, dateOfBirth, name, socialSecurity, profileImage);
 	
 	}
 

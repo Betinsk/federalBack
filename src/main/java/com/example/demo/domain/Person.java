@@ -31,7 +31,7 @@ import jakarta.persistence.SequenceGenerator;
 	private LocalDate dateOfBirth;
 	private String name;
 	private Integer socialSecurity;
-	 
+	private String profileImage;
  
 /*	@OneToMany(mappedBy ="person") 
 	// @JsonIgnoreProperties("imates")
@@ -43,13 +43,14 @@ import jakarta.persistence.SequenceGenerator;
 		
 	}
 
-	public Person(Integer id, String gender, LocalDate dateOfBirth, String name, Integer socialSecurity) {
+	public Person(Integer id, String gender, LocalDate dateOfBirth, String name, Integer socialSecurity, String profileImage) {
 		super();
 		this.id = id;
 		this.gender = gender;
 		this.dateOfBirth = dateOfBirth;
 		this.name = name;
 		this.socialSecurity = socialSecurity;
+		this.profileImage = profileImage;
 	}
 
 	public Integer getId() {
@@ -92,7 +93,14 @@ import jakarta.persistence.SequenceGenerator;
 		this.socialSecurity = socialSecurity;
 	}
 	
+	public String getProfileImage() {
+		return profileImage;
+	}
 
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -110,7 +118,8 @@ import jakarta.persistence.SequenceGenerator;
 		Person other = (Person) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
+
 	
 
 }

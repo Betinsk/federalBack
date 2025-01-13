@@ -44,13 +44,14 @@ import jakarta.persistence.OneToMany;
     private PrisionalInstitution prison;
 
 	
+	
 	public Imate() {
 	}
 
 
 	public Imate(Integer id, String gender, LocalDate dateOfBirth, String name, Integer socialSecurity,
-			String commitedCrime) {
-		super(id, gender, dateOfBirth, name, socialSecurity);
+			String commitedCrime, String profileImage) {
+		super(id, gender, dateOfBirth, name, socialSecurity, profileImage);
 		this.commitedCrime = commitedCrime;
 	
 	}
@@ -100,6 +101,8 @@ import jakarta.persistence.OneToMany;
 	public void setPrison(PrisionalInstitution prison) {
 		this.prison = prison;
 	}
+
+
 
 	
 	
