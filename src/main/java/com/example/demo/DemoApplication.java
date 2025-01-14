@@ -52,7 +52,13 @@ public class DemoApplication implements CommandLineRunner {
 	@Autowired
 	PrisonInstitutionRepository prisonInstitutionRepository;
 	
-	String img = "https://eventbucs.s3.us-east-2.amazonaws.com/7d852e08-4f3a-4097-88cc-6d6df42b0d41-aa6c74d3a4069c6de8d0c399753d840e.jpg";
+	String walt = "https://eventbucs.s3.us-east-2.amazonaws.com/7d852e08-4f3a-4097-88cc-6d6df42b0d41-aa6c74d3a4069c6de8d0c399753d840e.jpg";
+	String jess = "https://eventbucs.s3.us-east-2.amazonaws.com/jesse-pinkman-mugshot-v0-1jjkiizutmpb1.webp";
+	String gust = "https://eventbucs.s3.us-east-2.amazonaws.com/gus+fring.jpeg"; 
+	String mike = "";
+	String Lydi = "";
+	String Todd = "";
+	String hecor = "";
 	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -70,8 +76,6 @@ public class DemoApplication implements CommandLineRunner {
 		City albuquerque = new City(null, "Albuquerque", nm);
 		City elPaso = new City(null, "El Paso", tx);
 
-		
-
         City city1 = new City(null, "San Francisco", nm);
         City city2 = new City(null, "San Quentin",tx);
         City city3 = new City(null, "Folsom", nm);
@@ -82,30 +86,28 @@ public class DemoApplication implements CommandLineRunner {
 		nm.getCities().addAll(Arrays.asList(albuquerque, city1, city2, city3));
 		tx.getCities().add(elPaso);
 
-		
-		
 		// Salvando estados e cidades
 		stateRepository.saveAll(Arrays.asList(nm, tx));
 		cityRepository.saveAll(Arrays.asList(albuquerque, elPaso, city1, city2, city3));
 
 		// Criando personagens (Imates)
-		Imate walterWhite = new Imate(null, "Male", LocalDate.of(1958, 9, 7), "Walter White", 123456789, "Former high school chemistry teacher turned meth manufacturer.", img);
-		Imate jessePinkman = new Imate(null, "Male", LocalDate.of(1984, 9, 24), "Jesse Pinkman", 987654321, "Former student of Walter White and his business partner in meth production.", img);
-		Imate lydiaRodarte = new Imate(null, "Female", LocalDate.of(1970, 3, 4), "Lydia Rodarte-Quayle", 222333444, "Executiva da empresa que ajudou Gus Fring.", img);
-		Imate toddAlquist = new Imate(null, "Male", LocalDate.of(1991, 5, 5), "Todd Alquist", 789456123, "Funcionário de Vamonos Pest e associado ao tráfico de drogas.", img);
-		Imate gusFring = new Imate(null, "Male", LocalDate.of(1958, 4, 6), "Gustavo 'Gus' Fring", 445566778, "Barão das drogas e rival de Walter White.", img);
-		Imate mikeEhrmantraut = new Imate(null, "Male", LocalDate.of(1940, 6, 5), "Mike Ehrmantraut", 556677889, "Ex-policial e segurança de Gus Fring.", img);
-		Imate hectorSalamanca = new Imate(null, "Male", LocalDate.of(1928, 1, 1), "Hector Salamanca", 999888777, "Membro da família Salamanca.", img);
+		Imate walterWhite = new Imate(null, "Male", LocalDate.of(1958, 9, 7), "Walter White", 123456789, "Former high school chemistry teacher turned meth manufacturer.", walt);
+		Imate jessePinkman = new Imate(null, "Male", LocalDate.of(1984, 9, 24), "Jesse Pinkman", 987654321, "Former student of Walter White and his business partner in meth production.", jess);
+		Imate lydiaRodarte = new Imate(null, "Female", LocalDate.of(1970, 3, 4), "Lydia Rodarte-Quayle", 222333444, "Executiva da empresa que ajudou Gus Fring.", Lydi);
+		Imate toddAlquist = new Imate(null, "Male", LocalDate.of(1991, 5, 5), "Todd Alquist", 789456123, "Funcionário de Vamonos Pest e associado ao tráfico de drogas.", Todd);
+		Imate gusFring = new Imate(null, "Male", LocalDate.of(1958, 4, 6), "Gustavo 'Gus' Fring", 445566778, "Barão das drogas e rival de Walter White.", gust);
+		Imate mikeEhrmantraut = new Imate(null, "Male", LocalDate.of(1940, 6, 5), "Mike Ehrmantraut", 556677889, "Ex-policial e segurança de Gus Fring.", mike);
+		Imate hectorSalamanca = new Imate(null, "Male", LocalDate.of(1928, 1, 1), "Hector Salamanca", 999888777, "Membro da família Salamanca.", hecor);
 
 		// Criando personagens visitantes (ImateVisitors)
-		ImateVisitors hollyWhite = new ImateVisitors(null, "Female", LocalDate.of(2006, 2, 11), "Holly White", 123321123, img);
-		ImateVisitors marieSchrader = new ImateVisitors(null, "Female", LocalDate.of(1974, 2, 11), "Marie Schrader", 987123456, img);
-		ImateVisitors stevenGomez = new ImateVisitors(null, "Male", LocalDate.of(1980, 11, 3), "Steven Gomez", 654321987, img);
-		ImateVisitors janeMargolis = new ImateVisitors(null, "Female", LocalDate.of(1982, 5, 15), "Jane Margolis", 321654987, img);
-		ImateVisitors badger = new ImateVisitors(null, "Male", LocalDate.of(1985, 2, 20), "Badger", 654789123, img);
-		ImateVisitors skinnyPete = new ImateVisitors(null, "Male", LocalDate.of(1983, 8, 17), "Skinny Pete", 789123654, img);
-		ImateVisitors skylerWhite = new ImateVisitors(null, "Female", LocalDate.of(1970, 8, 11), "Skyler White", 223344556, img);
-		ImateVisitors saulGoodman = new ImateVisitors(null, "Male", LocalDate.of(1961, 11, 12), "Saul Goodman", 111223344, img);
+		ImateVisitors hollyWhite = new ImateVisitors(null, "Female", LocalDate.of(2006, 2, 11), "Holly White", 123321123, walt);
+		ImateVisitors marieSchrader = new ImateVisitors(null, "Female", LocalDate.of(1974, 2, 11), "Marie Schrader", 987123456, walt);
+		ImateVisitors stevenGomez = new ImateVisitors(null, "Male", LocalDate.of(1980, 11, 3), "Steven Gomez", 654321987, walt);
+		ImateVisitors janeMargolis = new ImateVisitors(null, "Female", LocalDate.of(1982, 5, 15), "Jane Margolis", 321654987, walt);
+		ImateVisitors badger = new ImateVisitors(null, "Male", LocalDate.of(1985, 2, 20), "Badger", 654789123, walt);
+		ImateVisitors skinnyPete = new ImateVisitors(null, "Male", LocalDate.of(1983, 8, 17), "Skinny Pete", 789123654, walt);
+		ImateVisitors skylerWhite = new ImateVisitors(null, "Female", LocalDate.of(1970, 8, 11), "Skyler White", 223344556, walt);
+		ImateVisitors saulGoodman = new ImateVisitors(null, "Male", LocalDate.of(1961, 11, 12), "Saul Goodman", 111223344, walt);
 
 		//Imate hankSchrader = new Imate(null, "Male", LocalDate.of(1966, 3, 12), "Hank Schrader", 334455667, "Agente da DEA e cunhado de Walter White.");
 
@@ -118,14 +120,24 @@ public class DemoApplication implements CommandLineRunner {
 		Address saulAddress = new Address(null, "9800 Montgomery Blvd NE", "6", albuquerque, null, saulGoodman);
 		Address skylerAddress = new Address(null, "308 Negra Arroyo Lane", "1", albuquerque, null, skylerWhite);
 		Address janeAddress = new Address(null, "1234 Elm St", "2", albuquerque, jessePinkman, null);
-		Address marieAddress = new Address(null, "5003 W 6th St", "3", albuquerque, walterWhite, null);
+		Address marieAddress = new Address(null, "5003 W 6th St", "3", albuquerque, walterWhite, null); 
 
 		// Associando endereços aos personagens
 		walterWhite.setAddresses(Arrays.asList(walterAddress));
-		walterWhite.setVisitors(Arrays.asList(saulGoodman,skylerWhite )); 
+		walterWhite.setVisitors(Arrays.asList(saulGoodman )); 
 		saulGoodman.setImates(Arrays.asList(walterWhite));
-		skylerWhite.setImates(Arrays.asList(walterWhite));
 
+		walterWhite.setVisitors(Arrays.asList(skylerWhite )); 
+		skylerWhite.setImates(Arrays.asList(mikeEhrmantraut));
+
+		
+		System.out.println(skylerWhite.getImates());
+ 
+		//hollyWhite.setImates(Arrays.asList(walterWhite));
+		marieSchrader.setImates(Arrays.asList());
+		stevenGomez.setImates(Arrays.asList(jessePinkman));
+		badger.setImates(Arrays.asList(jessePinkman));
+		
 		jessePinkman.setAddresses(Arrays.asList(jesseAddress));
 		//hankSchrader.setAddresses(Arrays.asList(hankAddress));
 		gusFring.setAddresses(Arrays.asList(gusAddress));

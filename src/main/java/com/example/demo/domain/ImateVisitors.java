@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -28,7 +30,7 @@ public class ImateVisitors extends Person implements Serializable {
 		
 		 @OneToMany(mappedBy = "imateVisitor",  cascade = CascadeType.REMOVE, orphanRemoval = true)
 		 private List<Address> addresses = new ArrayList<>();
-
+ 
 		 
 		 @OneToMany(mappedBy = "imateVisitor", cascade = CascadeType.ALL)
 		 private List<Phone> phones;
