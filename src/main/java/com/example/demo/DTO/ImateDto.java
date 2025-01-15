@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.example.demo.domain.Phone;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -14,12 +16,15 @@ public class ImateDto {
 	private String imateName;
 	private Integer socialSecurity;
 	private String commitedCrime;
+
 	
 	private List<Phone> phones = new ArrayList<>();
 	
 	 @JsonIgnoreProperties("cities") 
 	    private List<AddressDto> addressDto = new ArrayList<>(); // Certifique-se de que isso seja uma lista se você estiver enviando um array
 	
+	 private List<MultipartFile> imageUrls = new ArrayList<>();
+	 
 	ImateDto() {
 		
 	}
@@ -100,6 +105,14 @@ public class ImateDto {
 
 	public void setPhones(List<Phone> phones) {
 		this.phones = phones;
+	}
+
+	public List<MultipartFile> getImageUrls() {
+		return imageUrls;
+	}
+
+	public void setImageUrls(List<MultipartFile> imageUrls) {
+		this.imageUrls = imageUrls;
 	}
 	
 	

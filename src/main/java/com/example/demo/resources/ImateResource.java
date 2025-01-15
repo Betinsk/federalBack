@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +16,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.DTO.ImateDto;
 import com.example.demo.domain.Imate;
 import com.example.demo.repository.ImateRepository;
+import com.example.demo.service.AWSService;
 import com.example.demo.service.ImateService;
 
 @RestController
@@ -33,6 +36,8 @@ public class ImateResource {
 	@Autowired
 	 ImateRepository imateRepository;
 
+	@Autowired
+	AWSService awsService;
 	
 	@GetMapping
 	public ResponseEntity<List<Imate>> listar() {
@@ -63,12 +68,18 @@ public class ImateResource {
 			return ResponseEntity.ok().body(optionalImate);
 	    }
 		
-		@PostMapping
-		public ResponseEntity<Map<String, Object>> createImate(@RequestBody ImateDto imateDto) {
+		@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+		public ResponseEntity<Map<String, Object>> createImate(
+				@RequestPart("imateDto") ImateDto imateDto,  // Aqui usamos @RequestPart para o DTO
+		        @RequestPart("imageFiles") List<MultipartFile> imageFiles)  {
 		    Map<String, Object> response = new HashMap<>();
             System.out.println("Objeto recebido: " + imateDto.toString());
 
 		    try {
+		    	
+		    	 // Agora, a lista de arquivos (imageFiles) está disponível aqui
+		        imateDto.setImageUrls(imageFiles);  // Adiciona os arquivos ao DTO
+		    	
 		        Imate imate = imateService.createImate(imateDto);
 		        response.put("message", "Imate criado com sucesso!");
 		        response.put("imate", imate); // Você pode retornar o objeto criado, se necessário
@@ -86,6 +97,8 @@ public class ImateResource {
 		        return ResponseEntity.ok(updatedImate);
 		    }
 		
+		  
+		  
 		  @DeleteMapping("/{id}")
 		    public ResponseEntity<Void> deleteImate(@PathVariable Integer id) {
 			  imateRepository.deleteById(id);
@@ -96,7 +109,7 @@ public class ImateResource {
 			//TEST DA IMAGEM NO BUCKET
 			@PostMapping("/upload")
 			public ResponseEntity<String> uploadFile(@RequestParam("image") MultipartFile file) {
-			    String fileUrl = imateService.uploadImg(file);
+			    String fileUrl = awsService.uploadImg(file);
 			    if (fileUrl != null) {
 			        return ResponseEntity.ok("Arquivo enviado com sucesso: " + fileUrl);
 			    } else {

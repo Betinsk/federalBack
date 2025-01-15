@@ -43,7 +43,8 @@ import jakarta.persistence.OneToMany;
     @JoinColumn(name = "prison_id")
     private PrisionalInstitution prison;
 
-	
+	 private List<String> imageUrls = new ArrayList<>();
+
 	
 	public Imate() {
 	}
@@ -100,6 +101,16 @@ import jakarta.persistence.OneToMany;
 
 	public void setPrison(PrisionalInstitution prison) {
 		this.prison = prison;
+	}
+
+
+	public List<String> getImageUrls() {
+		return imageUrls;
+	}
+
+
+	public void setImageUrls(List<String> imageUrls) {
+		this.imageUrls = imageUrls;
 	}
 
 
