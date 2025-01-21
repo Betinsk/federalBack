@@ -25,7 +25,7 @@ public class ImateDto {
 	
 	 private List<MultipartFile> imageUrls = new ArrayList<>();
 	 
-	ImateDto() {
+	public ImateDto() {
 		
 	}
 
@@ -102,17 +102,17 @@ public class ImateDto {
 	}
 
 
-
-	public void setPhones(List<Phone> phones) {
-		this.phones = phones;
-	}
-
 	public List<MultipartFile> getImageUrls() {
 		return imageUrls;
 	}
 
 	public void setImageUrls(List<MultipartFile> imageUrls) {
 		this.imageUrls = imageUrls;
+	}
+
+	public List<Phone> setPhones(List<Phone> phones) {
+		return phones;
+		
 	}
 	
 	

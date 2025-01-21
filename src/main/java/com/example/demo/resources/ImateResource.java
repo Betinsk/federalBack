@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.DTO.ImateDto;
 import com.example.demo.domain.Imate;
+import com.example.demo.domain.Phone;
 import com.example.demo.repository.ImateRepository;
 import com.example.demo.service.AWSService;
 import com.example.demo.service.ImateService;
@@ -70,15 +70,31 @@ public class ImateResource {
 		
 		@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 		public ResponseEntity<Map<String, Object>> createImate(
-				@RequestPart("imateDto") ImateDto imateDto,  // Aqui usamos @RequestPart para o DTO
-		        @RequestPart("imageFiles") List<MultipartFile> imageFiles)  {
+				// @RequestParam("dateOfBirth") String dateOfBirth,
+				    @RequestParam("gender") String gender,
+				    @RequestParam("imateName") String imateName,
+				    @RequestParam("socialSecurity") Integer socialSecurity,
+				    @RequestParam("commitedCrime") String commitedCrime,
+				    @RequestParam(value = "phones", required = false) List<Phone> phones,
+				    @RequestParam(value = "addressDto", required = false) List<String> addressDto,
+				    @RequestParam(value = "imageUrls", required = false) List<MultipartFile> imageUrls) {
+				    
+				    ImateDto imateDto = new ImateDto();
+				   // imateDto.setDateOfBirth(dateOfBirth);
+				    imateDto.setGender(gender);
+				    imateDto.setImateName(imateName);
+				    imateDto.setSocialSecurity(socialSecurity);
+				    imateDto.setCommitedCrime(commitedCrime);
+				    imateDto.setPhones(phones); // Aqui você atribui a lista de telefones
+				    //imateDto.setAddressDto(addressDto); // Aqui você atribui a lista de endereços
+				    imateDto.setImageUrls(imageUrls); // Aqui você atribui as imagens  {
 		    Map<String, Object> response = new HashMap<>();
             System.out.println("Objeto recebido: " + imateDto.toString());
 
 		    try {
 		    	
 		    	 // Agora, a lista de arquivos (imageFiles) está disponível aqui
-		        imateDto.setImageUrls(imageFiles);  // Adiciona os arquivos ao DTO
+		       // imateDto.setImageUrls(imageFiles);  // Adiciona os arquivos ao DTO
 		    	
 		        Imate imate = imateService.createImate(imateDto);
 		        response.put("message", "Imate criado com sucesso!");
