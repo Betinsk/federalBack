@@ -62,7 +62,7 @@ public class DemoApplication implements CommandLineRunner {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
-	}
+	} 
  
 	@Override
 	public void run(String... args) throws Exception {
@@ -100,7 +100,6 @@ public class DemoApplication implements CommandLineRunner {
 		Imate hectorSalamanca = new Imate(null, "Male", LocalDate.of(1928, 1, 1), "Hector Salamanca", 999888777, "Membro da família Salamanca.", hecor);
 
 		// Criando personagens visitantes (ImateVisitors)
-		ImateVisitors hollyWhite = new ImateVisitors(null, "Female", LocalDate.of(2006, 2, 11), "Holly White", 123321123, walt);
 		ImateVisitors marieSchrader = new ImateVisitors(null, "Female", LocalDate.of(1974, 2, 11), "Marie Schrader", 987123456, walt);
 		ImateVisitors stevenGomez = new ImateVisitors(null, "Male", LocalDate.of(1980, 11, 3), "Steven Gomez", 654321987, walt);
 		ImateVisitors janeMargolis = new ImateVisitors(null, "Female", LocalDate.of(1982, 5, 15), "Jane Margolis", 321654987, walt);
@@ -151,20 +150,43 @@ public class DemoApplication implements CommandLineRunner {
         Address address1 = new Address(null, "123 Island Rd", "1", city1, null, null);
         Address address2 = new Address(null,"San Quentin Rd", "2", city2, null, null);
         Address address3 = new Address(null,"300 Prison Rd", "3", city3, null, null);
+        Address address4= new Address(null,"La Tuna Drive", "3", city3, null, null);
+        Address address5 = new Address(null,"Hazelton Rd", "3", city3, null, null);
+
         
-        addressRepository.saveAll(Arrays.asList(address1, address2, address3));
+        addressRepository.saveAll(Arrays.asList(address1, address2, address3, address4, address5));
 
 		// Salvando personagens e endereços
 		imateRepository.saveAll(Arrays.asList(walterWhite, jessePinkman, gusFring, mikeEhrmantraut, lydiaRodarte, toddAlquist, hectorSalamanca));
 		addressRepository.saveAll(Arrays.asList(walterAddress, jesseAddress , gusAddress, mikeAddress, saulAddress, skylerAddress, janeAddress, marieAddress));
-		imateVisitorRepository.saveAll(Arrays.asList(skylerWhite, hollyWhite, marieSchrader, saulGoodman, stevenGomez, janeMargolis, badger, skinnyPete));
+		imateVisitorRepository.saveAll(Arrays.asList(skylerWhite, marieSchrader, saulGoodman, stevenGomez, janeMargolis, badger, skinnyPete));
 
 		
         // Instanciando as prisões
 		 PrisionalInstitution p1 = new PrisionalInstitution("Alcatraz", SecurityLevel.HIGH, new Date(1940, 1, 1), 100, 200, "Famous high-security prison.", address1);
 		 PrisionalInstitution p2 =  new PrisionalInstitution("San Quentin", SecurityLevel.MEDIUM, new Date(1852, 7, 1), 1500, 3000, "California state prison for men.", address2);
 		PrisionalInstitution p3 =  new PrisionalInstitution("Folsom", SecurityLevel.HIGH, new Date(1880, 1, 1), 1200, 2500, "Prison located in California, famous for Johnny Cash's performance.", address3);
-		 prisonInstitutionRepository.saveAll(Arrays.asList( p1, p2, p3));
+	
+		PrisionalInstitution p4 = new PrisionalInstitution(
+                "Federal Correctional Institution La Tuna",
+                SecurityLevel.MEDIUM,
+                new Date(1900, 6, 1), // 1º de Julho de 1932
+                300, // Capacidade atual
+                500, // Capacidade total
+                "Federal prison located partially in New Mexico with medium security.",
+                address4
+        );
+
+        PrisionalInstitution p5 = new PrisionalInstitution(
+                "United States Penitentiary Hazelton",
+                SecurityLevel.HIGH,
+                new Date(1900, 1, 1), // 1º de Janeiro de 1940
+                400, // Capacidade atual
+                800, // Capacidade total
+                "High-security federal prison in New Mexico, known for strict protocols.",
+                address5
+        );
+		prisonInstitutionRepository.saveAll(Arrays.asList( p1, p2, p3, p4, p5));
 		
      
         
