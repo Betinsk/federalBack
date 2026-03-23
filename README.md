@@ -1,60 +1,106 @@
-# Imate Visitors Management System
+# 🏛️ DocPrison — Sistema de Gestão Prisional
 
-## Description
+## 🚀 Sobre o projeto
+O **DocPrison** é um sistema completo de gestão prisional desenvolvido para administrar detentos, funcionários, unidades e atividades internas, com foco em organização, segurança e análise de dados.
 
-The **Imate Visitors Management System** is a Java-based application built with Spring Boot that manages relationships between visitors and inmates. The system allows users to manage visitors, their associated inmates, addresses, and related data through a RESTful API. 
+A aplicação conta com autenticação segura, dashboard analítico e estrutura escalável baseada em arquitetura moderna.
 
-### Features
-- Manage visitors and their details (name, age, social security number, contact number).
-- Manage inmates and their details (name, age, gender, committed crimes).
-- Handle addresses associated with both visitors and inmates.
-- Many-to-many relationships between visitors and inmates.
+---
 
-## Technologies Used
-- **Java 17**
-- **Spring Boot** - For building the RESTful API.
-- **Hibernate** - For ORM (Object-Relational Mapping).
-- **PostgreSQL** - For database management.
-- **Jackson** - For JSON serialization and deserialization.
-- **Maven** - For project management and build automation.
+## 🧠 Objetivo
+Centralizar e facilitar o gerenciamento de informações em ambientes prisionais, permitindo:
+
+- Controle eficiente de detentos
+- Gestão de funcionários e permissões
+- Organização de unidades e celas
+- Registro de atividades e eventos internos
+- Visualização de dados através de dashboards
+
+---
+
+## 🔑 Funcionalidades
+
+### 👤 Detentos
+- Cadastro completo
+- Movimentação entre unidades
+- Histórico detalhado
+
+### 👮 Funcionários
+- Gestão de usuários
+- Controle de permissões e acesso
+
+### 🏢 Unidades Prisionais
+- Gerenciamento de unidades
+- Organização de celas
+
+### 📋 Atividades
+- Registro de trabalho e estudos
+- Controle de eventos internos
+
+### 📊 Dashboard
+- Estatísticas do sistema
+- Visualização de dados operacionais
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+### Backend
+- Java 17+
+- Spring Boot
+- Spring Security
+- JWT (autenticação)
+- JPA / Hibernate
+- PostgreSQL
+
+### Frontend
+- React
+- React Query
+- Bootstrap
+
+### Dev Tools
+- Cloudflare Tunnel
+- H2 (modo PostgreSQL)
+
+---
+
+## 🏗️ Estrutura do projeto
+
+### Backend (Spring Boot)
 
 
-API Endpoints
-Visitor Endpoints
-GET /visitors - Retrieve a list of all visitors.
-POST /visitors - Create a new visitor.
-GET /visitors/{id} - Retrieve a specific visitor by ID.
-PUT /visitors/{id} - Update a specific visitor by ID.
-DELETE /visitors/{id} - Delete a specific visitor by ID.
-Inmate Endpoints
-GET /imates - Retrieve a list of all inmates.
-POST /imates - Create a new inmate.
-GET /imates/{id} - Retrieve a specific inmate by ID.
-PUT /imates/{id} - Update a specific inmate by ID.
-DELETE /imates/{id} - Delete a specific inmate by ID.
-Address Endpoints
-GET /addresses - Retrieve a list of all addresses.
-POST /addresses - Create a new address.
-GET /addresses/{id} - Retrieve a specific address by ID.
-PUT /addresses/{id} - Update a specific address by ID.
-DELETE /addresses/{id} - Delete a specific address by ID.
+---
 
+## 🔐 Segurança
+O sistema utiliza autenticação baseada em **JWT (JSON Web Token)** com **Spring Security**, garantindo controle de acesso e proteção dos dados.
 
-API Documentation (Documentação da API)
-EndPoints: 
-Exemplo:
-GET /imates: Retorna uma lista de presos.
-POST /visitors: Cria um novo visitante.
-Exemplo de Requisições/Respostas: Exemplos de payloads de requisições e as respostas possíveis (inclusive os erros).
-Exemplo:
-json
-Copiar código
-POST /visitors
-{
-  "name": "Jhon Card",
-  "age": "34",
-  "socialSecure": 84941984,
-  "imates": [
-    { "id": 251}
-    ]
-  }
+---
+
+## 📈 Diferenciais técnicos
+
+- Arquitetura em camadas (Controller, Service, Repository)
+- Integração entre frontend e backend
+- Autenticação segura com JWT
+- Estrutura preparada para escalabilidade
+- Separação clara de responsabilidades
+
+---
+
+## 📚 Referências
+
+- Spring Boot Documentation  
+- Hibernate / JPA Documentation  
+- React Documentation  
+- Cloudflare Tunnel Documentation  
+
+---
+
+## 👨‍💻 Autor
+
+**Betinho**  
+- GitHub: https://github.com/Betinsk
+
+---
+
+## 📄 Licença
+Este projeto está sob a licença MIT.
